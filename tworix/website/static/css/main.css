@@ -1,0 +1,27 @@
+@layer utilities {
+            .glitch-slice {
+                clip-path: polygon(0 0, 100% 0, 100% 45%, 0 50%, 0 100%, 100% 100%);
+            }
+            .torn-edge {
+                clip-path: polygon(0% 0%, 100% 0%, 100% 92%, 98% 100%, 92% 94%, 85% 100%, 78% 92%, 70% 100%, 62% 94%, 55% 100%, 48% 92%, 40% 100%, 32% 94%, 25% 100%, 18% 92%, 10% 100%, 0% 92%);
+            }
+            .stencil-text {
+                -webkit-text-stroke: 1px rgba(140, 232, 48, 0.5);
+                color: transparent;
+            }
+            .graffiti-tag {
+                @apply font-graffiti opacity-10 pointer-events-none select-none;
+                filter: blur(1px);
+            }
+            .glitch-offset-1 {
+                text-shadow: 2px 0 #bf00ff, -2px 0 #8ce830;
+                clip-path: inset(0 0 50% 0);
+            }
+            .glitch-offset-2 {
+                text-shadow: -2px 0 #bf00ff, 2px 0 #8ce830;
+                clip-path: inset(50% 0 0 0);
+            }
+            .sliced-border {
+                clip-path: polygon(5% 0, 100% 0, 100% 95%, 95% 100%, 0 100%, 0 5%);
+            }
+        }
