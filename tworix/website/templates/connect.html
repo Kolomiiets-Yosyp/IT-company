@@ -1,13 +1,46 @@
-{% extends 'base.html' %}
-{% load static %}
+{% extends "base.html" %}
 
 {% block title %}Connect{% endblock %}
 
 {% block content %}
-<div class="px-6 lg:px-12 py-20 lg:py-32">
-    <div class="max-w-7xl mx-auto">
-        <h1 class="text-5xl lg:text-7xl font-black uppercase tracking-tighter leading-none">Connect</h1>
-        <p class="mt-4 text-white/50 text-lg max-w-2xl">This is the Connect page. Content will be added here soon.</p>
+<section class="px-6 lg:px-12 py-20 lg:py-32 relative">
+    <div class="max-w-4xl mx-auto">
+        <div class="text-center mb-16">
+            <h1 class="text-6xl lg:text-8xl font-black uppercase leading-none stencil-text">
+                INITIALIZE_SYNC
+            </h1>
+            <p class="text-xl text-white/70 mt-4">
+                We're at the edge of the grid. Open a channel.
+            </p>
+        </div>
+
+        <div class="bg-surface-dark border border-white/10 p-8 lg:p-12 sliced-border">
+            <form id="contact-form-page" class="space-y-6">
+                {% csrf_token %}
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label for="name-page" class="text-xs font-bold text-white/50 tracking-widest uppercase">Name</label>
+                        <input type="text" id="name-page" name="name" required class="w-full bg-background-dark border-b-2 border-white/10 focus:border-primary transition-all p-3 mt-2 outline-none">
+                    </div>
+                    <div>
+                        <label for="email-page" class="text-xs font-bold text-white/50 tracking-widest uppercase">Email</label>
+                        <input type="email" id="email-page" name="email" required class="w-full bg-background-dark border-b-2 border-white/10 focus:border-primary transition-all p-3 mt-2 outline-none">
+                    </div>
+                </div>
+                <div>
+                    <label for="message-page" class="text-xs font-bold text-white/50 tracking-widest uppercase">Message</label>
+                    <textarea id="message-page" name="message" rows="5" required class="w-full bg-background-dark border-b-2 border-white/10 focus:border-primary transition-all p-3 mt-2 outline-none"></textarea>
+                </div>
+                <div class="flex justify-end pt-4">
+                     <button type="submit" class="group relative bg-white text-black font-black px-10 py-5 text-xl sliced-border hover:translate-x-2 transition-transform">
+                        <span class="relative z-10">TRANSMIT</span>
+                        <div class="absolute inset-0 bg-primary translate-x-2 translate-y-2 -z-10 group-hover:translate-x-1 group-hover:translate-y-1 transition-transform"></div>
+                    </button>
+                </div>
+            </form>
+            <div id="response-message-page" class="mt-6 text-center"></div>
+        </div>
     </div>
-</div>
+</section>
+
 {% endblock %}

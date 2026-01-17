@@ -1,13 +1,89 @@
-{% extends 'base.html' %}
-{% load static %}
+{% extends "base.html" %}
 
 {% block title %}Solutions{% endblock %}
 
 {% block content %}
-<div class="px-6 lg:px-12 py-20 lg:py-32">
+<section class="px-6 lg:px-12 py-20 lg:py-32 relative overflow-hidden bg-surface-dark">
     <div class="max-w-7xl mx-auto">
-        <h1 class="text-5xl lg:text-7xl font-black uppercase tracking-tighter leading-none">Solutions</h1>
-        <p class="mt-4 text-white/50 text-lg max-w-2xl">This is the solutions page. Content will be added here soon.</p>
+        <div class="text-center mb-20">
+            <h1 class="text-[10rem] lg:text-[12rem] font-black leading-[0.8] tracking-tighter uppercase relative select-none stencil-text">
+                SOLUTIONS
+            </h1>
+            <p class="text-xl lg:text-2xl text-white/80 leading-tight font-medium max-w-3xl mx-auto mt-4 border-l-4 border-accent pl-8 py-2">
+                We engineer fragmented intelligence. Our core capabilities are designed to slice through legacy constraints and build the future of the urban grid.
+            </p>
+        </div>
+
+        <div class="space-y-24">
+            <!-- Feature 1: Fragmented Systems -->
+            <div class="flex flex-col lg:flex-row items-center gap-12 group">
+                <div class="lg:w-1/2 relative">
+                    <div class="relative aspect-video p-8 bg-background-dark border border-white/5 sliced-border group-hover:border-primary/40 transition-all">
+                        <div class="absolute top-4 left-4 text-xs font-mono text-white/10 group-hover:text-primary transition-colors">V.01</div>
+                        <div class="flex flex-col items-center justify-center h-full text-center">
+                            <div class="mb-8 inline-block p-4 bg-white/5 group-hover:bg-primary/20 transition-colors sliced-border">
+                                <span class="material-symbols-outlined text-primary text-8xl">developer_board</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="lg:w-1/2">
+                    <h2 class="text-xs font-bold tracking-[0.5em] text-primary uppercase flex items-center gap-2 mb-4">
+                        <span class="w-8 h-px bg-primary"></span> CORE_CAPABILITY_01
+                    </h2>
+                    <h3 class="text-5xl font-black mb-4 tracking-tighter uppercase leading-none">FRAGMENTED<br/>SYSTEMS</h4>
+                    <p class="text-white/60 text-lg leading-relaxed max-w-lg">
+                        We specialize in decoupled software engineering that prioritizes resilience, scalability, and rapid iteration cycles. Our approach allows for modular updates and fault isolation, ensuring your systems evolve without catastrophic failures. We build architectures that breathe, adapt, and scale at the speed of your needs.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Feature 2: Neural Glitch_AI -->
+            <div class="flex flex-col lg:flex-row-reverse items-center gap-12 group">
+                <div class="lg:w-1/2 relative">
+                     <div class="relative aspect-video p-8 bg-background-dark border border-white/5 sliced-border group-hover:border-accent/40 transition-all">
+                        <div class="absolute top-4 right-4 text-xs font-mono text-white/10 group-hover:text-accent transition-colors">V.02</div>
+                        <div class="flex flex-col items-center justify-center h-full text-center">
+                            <div class="mb-8 inline-block p-4 bg-white/5 group-hover:bg-accent/20 transition-colors sliced-border">
+                                <span class="material-symbols-outlined text-accent text-8xl">psychology</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="lg:w-1/2 lg:text-right">
+                    <h2 class="text-xs font-bold tracking-[0.5em] text-accent uppercase flex items-center lg:justify-end gap-2 mb-4">
+                         CORE_CAPABILITY_02 <span class="w-8 h-px bg-accent"></span>
+                    </h2>
+                    <h3 class="text-5xl font-black mb-4 tracking-tighter uppercase leading-none">NEURAL<br/>GLITCH_AI</h4>
+                    <p class="text-white/60 text-lg leading-relaxed max-w-lg ml-auto">
+                        Our advanced machine learning models are designed to thrive in chaos. We find critical patterns in unstructured, high-volume data environments. From predictive analytics to anomaly detection, our Glitch_AI cuts through the noise to deliver actionable, fragmented intelligence where others only see static.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Feature 3: Urban_Grid Cloud -->
+            <div class="flex flex-col lg:flex-row items-center gap-12 group">
+                <div class="lg:w-1/2 relative">
+                    <div class="relative aspect-video p-8 bg-background-dark border border-white/5 sliced-border group-hover:border-primary/40 transition-all">
+                        <div class="absolute top-4 left-4 text-xs font-mono text-white/10 group-hover:text-primary transition-colors">V.03</div>
+                        <div class="flex flex-col items-center justify-center h-full text-center">
+                             <div class="mb-8 inline-block p-4 bg-white/5 group-hover:bg-primary/20 transition-colors sliced-border">
+                                <span class="material-symbols-outlined text-primary text-8xl">cloud_off</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="lg:w-1/2">
+                    <h2 class="text-xs font-bold tracking-[0.5em] text-primary uppercase flex items-center gap-2 mb-4">
+                        <span class="w-8 h-px bg-primary"></span> CORE_CAPABILITY_03
+                    </h2>
+                    <h3 class="text-5xl font-black mb-4 tracking-tighter uppercase leading-none">URBAN_GRID<br/>CLOUD</h4>
+                    <p class="text-white/60 text-lg leading-relaxed max-w-lg">
+                        We deploy distributed cloud architecture that operates on the fringe, ensuring maximum uptime and resilience through radical decentralization. Our infrastructure is built for the high-stakes environment of the modern urban grid, providing low-latency, secure, and continuously available services.
+                    </p>
+                </div>
+            </div>
+        </div>
     </div>
-</div>
+</section>
 {% endblock %}

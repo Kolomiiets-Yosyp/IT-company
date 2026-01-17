@@ -51,15 +51,15 @@
             <div class="absolute -bottom-2 -right-2 text-[8px] font-graffiti text-accent rotate-12">TVX</div>
         </div>
         <nav class="flex flex-col gap-12 items-center flex-1">
-            <a class="group relative flex items-center" href="#">
+            <a class="group relative flex items-center" href="{% url 'build' %}">
                 <span class="material-symbols-outlined transition-all group-hover:text-primary">terminal</span>
                 <span class="absolute left-14 bg-primary text-black px-2 py-1 text-xs font-bold opacity-0 group-hover:opacity-100 transition-opacity">BUILD</span>
             </a>
-            <a class="group relative flex items-center" href="#">
+            <a class="group relative flex items-center" href="{% url 'grid' %}">
                 <span class="material-symbols-outlined transition-all group-hover:text-primary">grid_view</span>
                 <span class="absolute left-14 bg-primary text-black px-2 py-1 text-xs font-bold opacity-0 group-hover:opacity-100 transition-opacity">GRID</span>
             </a>
-            <a class="group relative flex items-center" href="#">
+            <a class="group relative flex items-center" href="{% url 'core' %}">
                 <span class="material-symbols-outlined transition-all group-hover:text-primary">electric_bolt</span>
                 <span class="absolute left-14 bg-primary text-black px-2 py-1 text-xs font-bold opacity-0 group-hover:opacity-100 transition-opacity">CORE</span>
             </a>
@@ -84,8 +84,8 @@
                     <a class="hover:text-primary transition-colors" href="{% url 'lab' %}">THE_LAB</a>
                     <a class="hover:text-primary transition-colors" href="{% url 'connect' %}">CONNECT</a>
                 </div>
-                <button class="bg-primary text-black font-black text-xs px-6 py-3 sliced-border hover:bg-accent hover:text-white transition-all">
-                    INITIALIZE_SYNC
+<button onclick="openModal()" id="open-modal-btn" class="bg-primary text-black font-black text-xs px-6 py-3 sliced-border hover:bg-accent hover:text-white transition-all">
+                    CONTACT US
                 </button>
             </div>
         </header>
@@ -105,7 +105,7 @@
                         ALL RIGHTS RESERVED // ALL SYSTEMS FRAGMENTED.
                     </p>
                     <div class="flex gap-4">
-                        <a class="h-10 w-10 bg-white/5 flex items-center justify-center sliced-border hover:bg-primary hover:text-black transition-all" href="#">
+                        <a class="h-10 w-10 bg-white/5 flex items-center justify-center sliced-border hover:bg-primary hover:text-black transition-all" href="{% url 'connect' %}">
                             <span class="material-symbols-outlined text-sm">alternate_email</span>
                         </a>
                         <a class="h-10 w-10 bg-white/5 flex items-center justify-center sliced-border hover:bg-primary hover:text-black transition-all" href="#">
@@ -120,9 +120,9 @@
                     <div class="space-y-4">
                         <h4 class="text-xs font-bold text-white/50 tracking-widest uppercase">LINKS</h4>
                         <nav class="flex flex-col gap-2 text-sm font-medium">
-                            <a class="hover:text-primary transition-colors" href="#">DIRECTORY</a>
-                            <a class="hover:text-primary transition-colors" href="#">THE_VAULT</a>
-                            <a class="hover:text-primary transition-colors" href="#">NODES</a>
+                            <a class="hover:text-primary transition-colors" href="{% url 'directory' %}">DIRECTORY</a>
+                            <a class="hover:text-primary transition-colors" href="{% url 'the_vault' %}">THE_VAULT</a>
+                            <a class="hover:text-primary transition-colors" href="{% url 'nodes' %}">NODES</a>
                         </nav>
                     </div>
                     <div class="space-y-4">
@@ -141,6 +141,42 @@
         </footer>
     </main>
 </div>
+
+<!-- Contact Modal -->
+<div id="contact-modal" class="fixed inset-0 bg-black/80 backdrop-blur-lg flex items-center justify-center z-50 hidden">
+    <div class="bg-surface-dark border border-white/10 p-8 lg:p-12 sliced-border w-full max-w-2xl relative">
+        <button id="close-modal-btn" class="absolute top-4 right-4 text-white hover:text-primary transition-colors">
+            <span class="material-symbols-outlined">close</span>
+        </button>
+        <h2 class="text-4xl font-black uppercase tracking-tighter mb-6">Open Channel</h2>
+        <form id="contact-form-modal" class="space-y-6">
+            {% csrf_token %}
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                    <label for="name-modal" class="text-xs font-bold text-white/50 tracking-widest uppercase">Name</label>
+                    <input type="text" id="name-modal" name="name" required class="w-full bg-background-dark border-b-2 border-white/10 focus:border-primary transition-all p-3 mt-2 outline-none">
+                </div>
+                <div>
+                    <label for="email-modal" class="text-xs font-bold text-white/50 tracking-widest uppercase">Email</label>
+                    <input type="email" id="email-modal" name="email" required class="w-full bg-background-dark border-b-2 border-white/10 focus:border-primary transition-all p-3 mt-2 outline-none">
+                </div>
+            </div>
+            <div>
+                <label for="message-modal" class="text-xs font-bold text-white/50 tracking-widest uppercase">Message</label>
+                <textarea id="message-modal" name="message" rows="5" required class="w-full bg-background-dark border-b-2 border-white/10 focus:border-primary transition-all p-3 mt-2 outline-none"></textarea>
+            </div>
+            <div class="flex justify-end pt-4">
+                 <button type="submit" class="group relative bg-white text-black font-black px-10 py-5 text-xl sliced-border hover:translate-x-2 transition-transform">
+                    <span class="relative z-10">TRANSMIT</span>
+                    <div class="absolute inset-0 bg-primary translate-x-2 translate-y-2 -z-10 group-hover:translate-x-1 group-hover:translate-y-1 transition-transform"></div>
+                </button>
+            </div>
+        </form>
+        <div id="response-message-modal" class="mt-6 text-center"></div>
+    </div>
+</div>
+
+<script src="{% static 'js/main.js' %}"></script>
 
 </body>
 </html>

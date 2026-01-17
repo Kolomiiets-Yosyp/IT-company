@@ -1,0 +1,98 @@
+document.addEventListener('DOMContentLoaded', function() {
+    const modal = document.getElementById('contact-modal');
+    const openBtn = document.getElementById('open-modal-btn');
+    const closeBtn = document.getElementById('close-modal-btn');
+    const form = document.getElementById('contact-form-modal');
+    const responseMessage = document.getElementById('response-message-modal');
+
+    function openModal() {
+        if(modal) modal.classList.remove('hidden');
+    }
+
+    function closeModal() {
+        if(modal) {
+            modal.classList.add('hidden');
+            if(responseMessage) responseMessage.innerHTML = '';
+            if(form) form.reset();
+        }
+    }
+
+    if(openBtn) openBtn.addEventListener('click', openModal);
+    if(closeBtn) closeBtn.addEventListener('click', closeModal);
+
+    // Close modal if clicking outside the content
+    if(modal) modal.addEventListener('click', function(e) {
+        if (e.target === modal) {
+            closeModal();
+        }
+    });
+
+    // Close modal on escape key press
+    document.addEventListener('keydown', function (e) {
+        if (e.key === "Escape" && modal && !modal.classList.contains('hidden')) {
+            closeModal();
+        }
+    });
+
+    if(form) form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const formData = new FormData(form);
+        const url = form.getAttribute('data-url');
+
+        fetch(url, {
+            method: 'POST',
+            body: formData,
+            headers: { 'X-Requested-With': 'XMLHttpRequest' }
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                responseMessage.className = 'text-primary font-bold';
+                responseMessage.textContent = data.message;
+                setTimeout(closeModal, 2000); // Close modal after 2 seconds on success
+            } else {
+                responseMessage.className = 'text-accent font-bold';
+                responseMessage.textContent = data.message || 'An error occurred.';
+            }
+        })
+        .catch(error => {
+            responseMessage.className = 'text-accent font-bold';
+            responseMessage.textContent = 'A network error occurred. Please try again.';
+            console.error('Error:', error);
+        });
+    });
+
+    // Handle connect page form
+    const connectForm = document.getElementById('contact-form-connect');
+    const responseMessageConnect = document.getElementById('response-message-connect');
+
+    if (connectForm) {
+        connectForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const formData = new FormData(connectForm);
+            const url = connectForm.getAttribute('data-url');
+
+            fetch(url, {
+                method: 'POST',
+                body: formData,
+                headers: { 'X-Requested-With': 'XMLHttpRequest' }
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    responseMessageConnect.className = 'text-primary font-bold mt-4';
+                    responseMessageConnect.textContent = data.message;
+                    connectForm.reset();
+                } else {
+                    responseMessageConnect.className = 'text-accent font-bold mt-4';
+                    responseMessageConnect.textContent = data.message || 'An error occurred.';
+                }
+            })
+            .catch(error => {
+                responseMessageConnect.className = 'text-accent font-bold mt-4';
+                responseMessageConnect.textContent = 'A network error occurred. Please try again.';
+                console.error('Error:', error);
+            });
+        });
+    }
+});

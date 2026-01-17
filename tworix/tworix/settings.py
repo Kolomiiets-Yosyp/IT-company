@@ -121,3 +121,7 @@ STATIC_URL = "static/"
 STATICFILES_DIRS = [
     BASE_DIR / "website/static",
 ]
+
+# Media files handling
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
