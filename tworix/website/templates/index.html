@@ -26,13 +26,10 @@
                             A next-gen IT collective. We slice through legacy constraints to engineer <span class="text-primary italic">fragmented intelligence</span> for the modern grid.
                         </p>
 <div class="flex flex-wrap gap-6 pt-6">
-<button class="group relative bg-white text-black font-black px-10 py-5 text-xl sliced-border hover:translate-x-2 transition-transform">
-<span class="relative z-10">ENTER_THE_VOID</span>
-<div class="absolute inset-0 bg-primary translate-x-2 translate-y-2 -z-10 group-hover:translate-x-1 group-hover:translate-y-1 transition-transform"></div>
+<button onclick="openModal()" class="group relative bg-white text-black font-black px-10 py-5 text-xl sliced-border hover:translate-x-2 transition-transform">
+    <span class="relative z-10">write a line</span>
+    <div class="absolute inset-0 bg-primary translate-x-2 translate-y-2 -z-10 group-hover:translate-x-1 group-hover:translate-y-1 transition-transform"></div>
 </button>
-<button class="border border-white/20 text-white font-bold px-10 py-5 text-xl hover:bg-white/5 transition-colors flex items-center gap-2">
-<span class="material-symbols-outlined">analytics</span> DATA_SHEET
-                            </button>
 </div>
 </div>
 </div>
@@ -89,9 +86,9 @@
 </div>
 <div class="relative z-10 flex items-center justify-between">
 <div class="font-graffiti text-2xl text-white/10 group-hover:text-accent transition-colors">Tworix</div>
-<button class="h-12 w-12 flex items-center justify-center bg-white/5 hover:bg-primary hover:text-black transition-all sliced-border">
+<a href="{% url 'solutions' %}" class="h-12 w-12 flex items-center justify-center bg-white/5 hover:bg-primary hover:text-black transition-all sliced-border">
 <span class="material-symbols-outlined">arrow_outward</span>
-</button>
+</a>
 </div>
 </div>
 <div class="group relative bg-background-dark border border-white/5 p-10 h-[450px] flex flex-col justify-between torn-edge transition-all hover:border-accent/40 md:translate-y-12">
@@ -107,9 +104,9 @@
 </div>
 <div class="relative z-10 flex items-center justify-between">
 <div class="font-graffiti text-2xl text-white/10 group-hover:text-primary transition-colors">Tworix</div>
-<button class="h-12 w-12 flex items-center justify-center bg-white/5 hover:bg-accent hover:text-white transition-all sliced-border">
+<a href="{% url 'solutions' %}" class="h-12 w-12 flex items-center justify-center bg-white/5 hover:bg-accent hover:text-white transition-all sliced-border">
 <span class="material-symbols-outlined">arrow_outward</span>
-</button>
+</a>
 </div>
 </div>
 <div class="group relative bg-background-dark border border-white/5 p-10 h-[450px] flex flex-col justify-between torn-edge transition-all hover:border-primary/40">
@@ -125,9 +122,9 @@
 </div>
 <div class="relative z-10 flex items-center justify-between">
 <div class="font-graffiti text-2xl text-white/10 group-hover:text-accent transition-colors">Tworix</div>
-<button class="h-12 w-12 flex items-center justify-center bg-white/5 hover:bg-primary hover:text-black transition-all sliced-border">
+<a href="{% url 'solutions' %}" class="h-12 w-12 flex items-center justify-center bg-white/5 hover:bg-primary hover:text-black transition-all sliced-border">
 <span class="material-symbols-outlined">arrow_outward</span>
-</button>
+</a>
 </div>
 </div>
 </div>
@@ -142,29 +139,33 @@
                         Where we push the boundaries of fragmented aesthetics and high-performance computing.
                     </p>
 <div class="pt-4">
-<a class="inline-flex items-center gap-4 text-2xl font-black text-white hover:text-primary transition-all group" href="#">
+<a class="inline-flex items-center gap-4 text-2xl font-black text-white hover:text-primary transition-all group" href="{% url 'about' %}">
                             VIEW_MANIFESTO <span class="material-symbols-outlined group-hover:translate-x-4 transition-transform text-primary">trending_flat</span>
 </a>
 </div>
 </div>
 <div class="lg:w-1/2 w-full">
+{% if latest_projects %}
 <div class="group relative bg-background-dark border-r-4 border-accent p-8 hover:bg-surface-dark transition-all sliced-border">
-<div class="flex flex-col md:flex-row gap-8">
-<div class="md:w-2/5 aspect-square overflow-hidden grayscale group-hover:grayscale-0 transition-all sliced-border border border-white/10">
-<img alt="Lab visual" class="w-full h-full object-cover scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDX7ADEh3s0sXbL954Xumc-EVTJtkedpNAeIsrZFKzHLZTykQRr6lXZxbe7qUq2C2nhjNkfbTghiG3iqyGd10aszsIX2n_y8Etl-4sMykl2aTK5oTi0O7lfyTUtsF22A9BR7lYCSQVvmC3otDoDccuh4acj78B93cOtv6rQ5B6idfOXgLkSPpVLok_3QuAYIbKh581yA9Lc7Mqdlbt6GMhNoHjhL1UA3o275w7NSWVGn2XZRGRqXgdqEtWXrqEhMM69Wh6rl9BztAU"/>
+    <div class="flex flex-col md:flex-row gap-8">
+        <div class="md:w-2/5 aspect-square overflow-hidden grayscale group-hover:grayscale-0 transition-all sliced-border border border-white/10">
+            {% if latest_projects.0.image %}
+            <img alt="{{ latest_projects.0.title }} visual" class="w-full h-full object-cover scale-110" src="{{ latest_projects.0.image.url }}"/>
+            {% endif %}
+        </div>
+        <div class="md:w-3/5 flex flex-col justify-center">
+            <span class="text-[10px] font-mono text-accent mb-2 tracking-widest uppercase">LATEST_INTEL // {{ latest_projects.0.id|stringformat:"03d" }}</span>
+            <h3 class="text-3xl font-black mb-4 tracking-tighter leading-tight">{{ latest_projects.0.title }}</h3>
+            <p class="text-white/40 text-sm mb-6">
+                {{ latest_projects.0.description|truncatewords:20 }}
+            </p>
+            <a href="{% url 'project_detail' pk=latest_projects.0.pk %}" class="w-fit bg-white text-black font-black px-6 py-3 text-xs uppercase hover:bg-primary transition-colors sliced-border">
+                READ_DECRYPTED
+            </a>
+        </div>
+    </div>
 </div>
-<div class="md:w-3/5 flex flex-col justify-center">
-<span class="text-[10px] font-mono text-accent mb-2 tracking-widest uppercase">INTEL_REPORT // 0xAF2</span>
-<h3 class="text-3xl font-black mb-4 tracking-tighter leading-tight">THE_GRAFFITI_ALGORITHM: DESIGNING NOISE</h3>
-<p class="text-white/40 text-sm mb-6">
-                                    A deep dive into how chaotic visual structures can improve data visualization legibility in high-density dashboards.
-                                </p>
-<button class="w-fit bg-white text-black font-black px-6 py-3 text-xs uppercase hover:bg-primary transition-colors sliced-border">
-                                    READ_DECRYPTED
-                                </button>
-</div>
-</div>
-</div>
+{% endif %}
 </div>
 </div>
 </section>
