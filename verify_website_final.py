@@ -10,54 +10,47 @@ async def main():
 
         # 1. Home page
         await page.goto(base_url)
-        await page.screenshot(path="verification/01_home_page_final.png")
+        await page.screenshot(path="verification/01_home_page_final.png", full_page=True)
 
         # 2. Solutions page
         await page.goto(f"{base_url}/solutions")
-        await page.screenshot(path="verification/02_solutions_page_final.png")
+        await page.screenshot(path="verification/02_solutions_page_final.png", full_page=True)
 
         # 3. The Lab page
         await page.goto(f"{base_url}/lab")
-        await page.screenshot(path="verification/03_lab_page_final.png")
+        await page.screenshot(path="verification/03_lab_page_final.png", full_page=True)
 
-        # 4. About page
+        # 4. About page (was 'Connect' before)
         await page.goto(f"{base_url}/about")
-        await page.screenshot(path="verification/04_about_page_final.png")
+        await page.screenshot(path="verification/04_about_page_final.png", full_page=True)
 
-        # 5. Connect page
+        # 5. Connect page (was contact form)
         await page.goto(f"{base_url}/connect")
-        await page.screenshot(path="verification/05_connect_page_final.png")
+        await page.screenshot(path="verification/05_connect_page_final.png", full_page=True)
 
-        # 6. Contact modal functionality
-        await page.goto(base_url)
-        await page.click('button:has-text("CONTACT US")')
-        await page.wait_for_selector('#contact-modal', state='visible')
-        await page.screenshot(path="verification/06_contact_modal_open_final.png")
-        await page.click('#close-modal-btn')
-
-        # 7. Build page
+        # 6. Build page (new content)
         await page.goto(f"{base_url}/build")
-        await page.screenshot(path="verification/07_build_page.png")
+        await page.screenshot(path="verification/06_build_page_final.png", full_page=True)
 
-        # 8. Grid page
+        # 7. Grid page (new content)
         await page.goto(f"{base_url}/grid")
-        await page.screenshot(path="verification/08_grid_page.png")
+        await page.screenshot(path="verification/07_grid_page_final.png", full_page=True)
 
-        # 9. Core page
+        # 8. Core page (new content)
         await page.goto(f"{base_url}/core")
-        await page.screenshot(path="verification/09_core_page.png")
+        await page.screenshot(path="verification/08_core_page_final.png", full_page=True)
 
-        # 10. Directory page
+        # 9. Directory page (new content)
         await page.goto(f"{base_url}/directory")
-        await page.screenshot(path="verification/10_directory_page.png")
+        await page.screenshot(path="verification/09_directory_page_final.png", full_page=True)
 
-        # 11. The Vault page
+        # 10. The Vault page (new content)
         await page.goto(f"{base_url}/the_vault")
-        await page.screenshot(path="verification/11_the_vault_page.png")
+        await page.screenshot(path="verification/10_the_vault_page_final.png", full_page=True)
 
-        # 12. Nodes page
+        # 11. Nodes page (new content)
         await page.goto(f"{base_url}/nodes")
-        await page.screenshot(path="verification/12_nodes_page.png")
+        await page.screenshot(path="verification/11_nodes_page_final.png", full_page=True)
 
         await browser.close()
 

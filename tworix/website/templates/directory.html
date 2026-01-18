@@ -1,8 +1,46 @@
 {% extends "base.html" %}
 
+{% block title %}Tworix Directory{% endblock %}
+
 {% block content %}
-<div class="text-center">
-    <h1 class="text-4xl font-bold">Directory</h1>
-    <p>This page is under construction.</p>
-</div>
+<section class="px-6 lg:px-12 py-20 lg:py-32 relative overflow-hidden">
+    <div class="max-w-7xl mx-auto">
+        <div class="text-center space-y-4 mb-20">
+            <h1 class="text-6xl lg:text-8xl font-black uppercase tracking-tighter leading-none">
+                DIRECTORY
+            </h1>
+            <p class="text-xl lg:text-2xl text-white/80 leading-tight font-medium max-w-3xl mx-auto">
+                A non-exhaustive list of our public-facing system nodes and access points.
+            </p>
+        </div>
+        <div class="bg-surface-dark border border-white/10 p-10 sliced-border font-mono text-sm">
+            <ul>
+                <li class="flex justify-between items-center py-4 border-b border-white/5">
+                    <span class="text-primary">/home</span>
+                    <span class="text-white/50">Root Access Node</span>
+                </li>
+                <li class="flex justify-between items-center py-4 border-b border-white/5">
+                    <span class="text-primary">/solutions</span>
+                    <span class="text-white/50">Core Capabilities Deck</span>
+                </li>
+                <li class="flex justify-between items-center py-4 border-b border-white/5">
+                    <span class="text-primary">/lab</span>
+                    <span class="text-white/50">Experimental Projects Division</span>
+                </li>
+                <li class="flex justify-between items-center py-4 border-b border-white/5">
+                    <span class="text-primary">/connect</span>
+                    <span class="text-white/50">Secure Comms Channel</span>
+                </li>
+                 <li class="flex justify-between items-center py-4 border-b border-white/5">
+                    <span class="text-primary">/grid</span>
+                    <span class="text-white/50">Network Infrastructure Overview</span>
+                </li>
+                 <li class="flex justify-between items-center py-4">
+                    <span class="text-primary">/core</span>
+                    <span class="text-white/50">System Principles & Source Code</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+</section>
 {% endblock %}

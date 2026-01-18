@@ -1,8 +1,74 @@
 {% extends "base.html" %}
 
+{% block title %}The Tworix Grid{% endblock %}
+
 {% block content %}
-<div class="text-center">
-    <h1 class="text-4xl font-bold">Grid</h1>
-    <p>This page is under construction.</p>
-</div>
+<section class="px-6 lg:px-12 py-20 lg:py-32 relative overflow-hidden">
+    <div class="max-w-7xl mx-auto">
+        <div class="text-center space-y-4 mb-20">
+            <h1 class="text-6xl lg:text-8xl font-black uppercase tracking-tighter leading-none">
+                THE_GRID
+            </h1>
+            <p class="text-xl lg:text-2xl text-white/80 leading-tight font-medium max-w-3xl mx-auto">
+                Our infrastructure is not a monolith; it's a decentralized, living network. A web of interconnected nodes ensuring maximum uptime and data integrity.
+            </p>
+        </div>
+
+        <div class="space-y-16">
+            <div class="flex flex-col lg:flex-row items-center gap-12">
+                <div class="lg:w-1/2">
+                    <div class="relative aspect-video group">
+                        <div class="absolute inset-0 bg-accent/20 rotate-3 sliced-border"></div>
+                        <div class="absolute inset-0 bg-primary/20 -rotate-2 sliced-border"></div>
+                        <div class="absolute inset-2 overflow-hidden sliced-border border border-white/10">
+                            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDHH-Kj-a-j2-jQk-2_j-j-j-j-j-j-j-j-j-j-j-j-j-j-j-j-j-j-j-j-j-j-j-j-j-j-j-j-j-j-j-j/s1920-c-rw-v1" alt="Urban Grid" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500">
+                        </div>
+                    </div>
+                </div>
+                <div class="lg:w-1/2 space-y-4">
+                    <h2 class="text-4xl font-black uppercase tracking-tighter leading-none text-primary">Urban_Grid Cloud</h2>
+                    <p class="text-white/60 leading-relaxed">
+                        We operate on the fringe, utilizing a distributed cloud architecture that ensures unparalleled resilience. Our nodes are scattered across the urban landscape, creating a web of data that is impervious to centralized failure. This decentralized model guarantees maximum uptime and data sovereignty.
+                    </p>
+                </div>
+            </div>
+
+            <div class="flex flex-col lg:flex-row-reverse items-center gap-12">
+                <div class="lg:w-1/2">
+                    <div class="relative aspect-video group">
+                        <div class="absolute inset-0 bg-primary/20 rotate-3 sliced-border"></div>
+                        <div class="absolute inset-0 bg-accent/20 -rotate-2 sliced-border"></div>
+                        <div class="absolute inset-2 overflow-hidden sliced-border border border-white/10">
+                            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuC9k-Rj-a-j2-jQk-2_j-j-j-j-j-j-j-j-j-j-j-j-j-j-j-j-j-j-j-j-j-j-j-j-j-j-j-j-j-j-j-j/s1920-c-rw-v1" alt="Data Weave" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500">
+                        </div>
+                    </div>
+                </div>
+                <div class="lg:w-1/2 space-y-4">
+                    <h2 class="text-4xl font-black uppercase tracking-tighter leading-none text-accent">Data_Weave</h2>
+                    <p class="text-white/60 leading-relaxed">
+                        Our proprietary data protocol, 'Data_Weave', ensures encrypted, high-speed data transmission between nodes. It dynamically reroutes traffic to avoid bottlenecks and interference, maintaining a constant, secure flow of information. The weave is self-healing, automatically repairing broken links in the chain.
+                    </p>
+                </div>
+            </div>
+
+             <div class="flex flex-col lg:flex-row items-center gap-12">
+                <div class="lg:w-1/2">
+                    <div class="relative aspect-video group">
+                        <div class="absolute inset-0 bg-accent/20 rotate-3 sliced-border"></div>
+                        <div class="absolute inset-0 bg-primary/20 -rotate-2 sliced-border"></div>
+                        <div class="absolute inset-2 overflow-hidden sliced-border border border-white/10">
+                            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuD9k-Rj-a-j2-jQk-2_j-j-j-j-j-j-j-j-j-j-j-j-j-j-j-j-j-j-j-j-j-j-j-j-j-j-j-j-j-j-j-j/s1920-c-rw-v1" alt="Security" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500">
+                        </div>
+                    </div>
+                </div>
+                <div class="lg:w-1/2 space-y-4">
+                    <h2 class="text-4xl font-black uppercase tracking-tighter leading-none text-primary">Aegis_Security</h2>
+                    <p class="text-white/60 leading-relaxed">
+                       Security is not an afterthought; it is the foundation of the grid. Our 'Aegis' security layer provides end-to-end encryption, intrusion detection, and proactive threat neutralization. We treat the grid as a fortress, with every node a vigilant sentinel.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 {% endblock %}

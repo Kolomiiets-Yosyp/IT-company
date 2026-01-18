@@ -38,11 +38,15 @@ document.addEventListener('DOMContentLoaded', function() {
         e.preventDefault();
         const formData = new FormData(form);
         const url = form.getAttribute('data-url');
+        const csrfToken = form.querySelector('input[name="csrfmiddlewaretoken"]').value;
 
         fetch(url, {
             method: 'POST',
             body: formData,
-            headers: { 'X-Requested-With': 'XMLHttpRequest' }
+            headers: {
+                'X-Requested-With': 'XMLHttpRequest',
+                'X-CSRFToken': csrfToken
+            }
         })
         .then(response => response.json())
         .then(data => {
@@ -63,19 +67,23 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // Handle connect page form
-    const connectForm = document.getElementById('contact-form-connect');
-    const responseMessageConnect = document.getElementById('response-message-connect');
+    const connectForm = document.getElementById('contact-form-page');
+    const responseMessageConnect = document.getElementById('response-message-page');
 
     if (connectForm) {
         connectForm.addEventListener('submit', function(e) {
             e.preventDefault();
             const formData = new FormData(connectForm);
             const url = connectForm.getAttribute('data-url');
+            const csrfToken = connectForm.querySelector('input[name="csrfmiddlewaretoken"]').value;
 
             fetch(url, {
                 method: 'POST',
                 body: formData,
-                headers: { 'X-Requested-With': 'XMLHttpRequest' }
+                headers: {
+                    'X-Requested-With': 'XMLHttpRequest',
+                    'X-CSRFToken': csrfToken
+                }
             })
             .then(response => response.json())
             .then(data => {
