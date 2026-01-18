@@ -14,4 +14,5 @@ urlpatterns = [
     path('directory/', views.DirectoryView.as_view(), name='directory'),
     path('the_vault/', views.TheVaultView.as_view(), name='the_vault'),
     path('nodes/', views.NodesView.as_view(), name='nodes'),
+    path('contact_submit/', views.contact_submit, name='contact_submit'),
 ]

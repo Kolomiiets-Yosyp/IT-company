@@ -1,8 +1,35 @@
 {% extends "base.html" %}
 
+{% block title %}The Vault{% endblock %}
+
 {% block content %}
-<div class="text-center">
-    <h1 class="text-4xl font-bold">The Vault</h1>
-    <p>This page is under construction.</p>
-</div>
+<section class="px-6 lg:px-12 py-20 lg:py-32 relative overflow-hidden">
+    <div class="max-w-7xl mx-auto">
+        <div class="text-center space-y-4 mb-20">
+            <h1 class="text-6xl lg:text-8xl font-black uppercase tracking-tighter leading-none">
+                THE_VAULT
+            </h1>
+            <p class="text-xl lg:text-2xl text-white/80 leading-tight font-medium max-w-3xl mx-auto">
+                Archived intelligence. Declassified project files and legacy system schematics. Access restricted.
+            </p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="group bg-surface-dark border border-white/10 p-8 sliced-border hover:border-accent/50 transition-all">
+                <h3 class="text-2xl font-black uppercase tracking-tighter text-accent">PROJECT_PROMETHEUS</h3>
+                <p class="text-sm text-white/50 font-mono mb-4">DATE: 2023.Q2</p>
+                <p class="text-white/70 text-sm">A deep-learning initiative to predict grid-wide energy fluctuations. Decommissioned after successful integration into Core Systems.</p>
+            </div>
+             <div class="group bg-surface-dark border border-white/10 p-8 sliced-border hover:border-accent/50 transition-all">
+                <h3 class="text-2xl font-black uppercase tracking-tighter text-accent">GHOST_PROTOCOL_V1</h3>
+                <p class="text-sm text-white/50 font-mono mb-4">DATE: 2022.Q4</p>
+                <p class="text-white/70 text-sm">The first iteration of our decentralized communication protocol. Superseded by Data_Weave, but the foundational principles remain.</p>
+            </div>
+             <div class="group bg-surface-dark border border-white/10 p-8 sliced-border hover:border-accent/50 transition-all">
+                <h3 class="text-2xl font-black uppercase tracking-tighter text-accent">AEGIS_PROTOTYPE</h3>
+                <p class="text-sm text-white/50 font-mono mb-4">DATE: 2022.Q1</p>
+                <p class="text-white/70 text-sm">Initial schematics for the Aegis security layer. Contains the foundational algorithms for our proactive threat neutralization system.</p>
+            </div>
+        </div>
+    </div>
+</section>
 {% endblock %}

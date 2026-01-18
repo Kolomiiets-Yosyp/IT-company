@@ -1,8 +1,62 @@
 {% extends "base.html" %}
 
+{% block title %}Tworix Nodes{% endblock %}
+
 {% block content %}
-<div class="text-center">
-    <h1 class="text-4xl font-bold">Nodes</h1>
-    <p>This page is under construction.</p>
-</div>
+<section class="px-6 lg:px-12 py-20 lg:py-32 relative overflow-hidden">
+    <div class="max-w-7xl mx-auto">
+        <div class="text-center space-y-4 mb-20">
+            <h1 class="text-6xl lg:text-8xl font-black uppercase tracking-tighter leading-none">
+                GRID_NODES
+            </h1>
+            <p class="text-xl lg:text-2xl text-white/80 leading-tight font-medium max-w-3xl mx-auto">
+                Live status of our primary data nodes. Each node is a self-sufficient unit in the decentralized grid.
+            </p>
+        </div>
+        <div class="bg-surface-dark border border-white/10 sliced-border">
+            <table class="w-full font-mono text-sm">
+                <thead>
+                    <tr class="border-b border-white/10">
+                        <th class="p-4 text-left text-primary tracking-widest">NODE_ID</th>
+                        <th class="p-4 text-left text-primary tracking-widest">LOCATION</th>
+                        <th class="p-4 text-left text-primary tracking-widest">STATUS</th>
+                        <th class="p-4 text-left text-primary tracking-widest">LOAD</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="border-b border-white/5">
+                        <td class="p-4">#T8X-Alpha</td>
+                        <td class="p-4 text-white/70">Sector 01 [CORE]</td>
+                        <td class="p-4 text-green-400">ONLINE</td>
+                        <td class="p-4 text-white/70">14%</td>
+                    </tr>
+                    <tr class="border-b border-white/5">
+                        <td class="p-4">#T8X-Beta</td>
+                        <td class="p-4 text-white/70">Sector 04 [EDGE]</td>
+                        <td class="p-4 text-green-400">ONLINE</td>
+                        <td class="p-4 text-white/70">28%</td>
+                    </tr>
+                    <tr class="border-b border-white/5">
+                        <td class="p-4">#T8X-Gamma</td>
+                        <td class="p-4 text-white/70">Sector 07 [FRINGE]</td>
+                        <td class="p-4 text-yellow-400">SYNCING</td>
+                        <td class="p-4 text-white/70">78%</td>
+                    </tr>
+                     <tr class="border-b border-white/5">
+                        <td class="p-4">#T8X-Delta</td>
+                        <td class="p-4 text-white/70">Sector 02 [CORE]</td>
+                        <td class="p-4 text-green-400">ONLINE</td>
+                        <td class="p-4 text-white/70">21%</td>
+                    </tr>
+                     <tr>
+                        <td class="p-4">#T8X-Epsilon</td>
+                        <td class="p-4 text-white/70">Sector 09 [VOID]</td>
+                        <td class="p-4 text-red-500">OFFLINE</td>
+                        <td class="p-4 text-white/70">---</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
 {% endblock %}

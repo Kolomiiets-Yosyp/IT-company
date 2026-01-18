@@ -7,15 +7,15 @@
     <div class="max-w-4xl mx-auto">
         <div class="text-center mb-16">
             <h1 class="text-6xl lg:text-8xl font-black uppercase leading-none stencil-text">
-                INITIALIZE_SYNC
+        {{ connect_title|default:"INITIALIZE_SYNC" }}
             </h1>
             <p class="text-xl text-white/70 mt-4">
-                We're at the edge of the grid. Open a channel.
+        {{ connect_subtitle|default:"We're at the edge of the grid. Open a channel." }}
             </p>
         </div>
 
         <div class="bg-surface-dark border border-white/10 p-8 lg:p-12 sliced-border">
-            <form id="contact-form-page" class="space-y-6">
+            <form id="contact-form-page" class="space-y-6" data-url="{% url 'contact_submit' %}">
                 {% csrf_token %}
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>

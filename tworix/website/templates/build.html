@@ -1,8 +1,72 @@
 {% extends "base.html" %}
 
+{% block title %}Build with Tworix{% endblock %}
+
 {% block content %}
-<div class="text-center">
-    <h1 class="text-4xl font-bold">Build</h1>
-    <p>This page is under construction.</p>
-</div>
+<section class="px-6 lg:px-12 py-20 lg:py-32 relative overflow-hidden">
+    <div class="max-w-7xl mx-auto">
+        <div class="text-center space-y-4 mb-20">
+            <h1 class="text-6xl lg:text-8xl font-black uppercase tracking-tighter leading-none">
+                BUILD<span class="text-primary italic">_</span>PROTOCOL
+            </h1>
+            <p class="text-xl lg:text-2xl text-white/80 leading-tight font-medium max-w-3xl mx-auto">
+                We don't just write code. We construct fragmented, resilient digital architectures designed to thrive in the chaos of the urban grid.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-10 items-start">
+            <div class="space-y-8">
+                <div class="group relative bg-surface-dark border border-white/5 p-8 torn-edge">
+                    <h3 class="text-3xl font-black mb-4 tracking-tighter uppercase leading-none">
+                        01/ <span class="text-accent">DECONSTRUCT</span>
+                    </h3>
+                    <p class="text-white/60 text-sm leading-relaxed">
+                        Every project begins with a slice. We dismantle the monolithic requirements into agile, manageable fragments. This allows for rapid prototyping and iterative deployment, ensuring the core functionality is solid before we build the periphery.
+                    </p>
+                </div>
+                <div class="group relative bg-surface-dark border border-white/5 p-8 torn-edge">
+                    <h3 class="text-3xl font-black mb-4 tracking-tighter uppercase leading-none">
+                        02/ <span class="text-primary">CONSTRUCT</span>
+                    </h3>
+                    <p class="text-white/60 text-sm leading-relaxed">
+                        Using a decentralized workflow, our cells of developers synthesize solutions in parallel. We leverage a modular codebase, allowing for a plug-and-play approach to features and ensuring that no single point of failure can compromise the system.
+                    </p>
+                </div>
+                <div class="group relative bg-surface-dark border border-white/5 p-8 torn-edge">
+                    <h3 class="text-3xl font-black mb-4 tracking-tighter uppercase leading-none">
+                        03/ <span class="text-accent">INTEGRATE</span>
+                    </h3>
+                    <p class="text-white/60 text-sm leading-relaxed">
+                        The fragments are woven together into a cohesive whole. Our integration protocol stress-tests the connections, ensuring seamless data flow and resilient architecture. The final product is a system that is more than the sum of its parts.
+                    </p>
+                </div>
+            </div>
+            <div class="sticky top-24">
+                <div class="bg-background-dark border border-white/10 p-10 sliced-border">
+                     <h4 class="text-xs font-bold tracking-[0.3em] text-primary uppercase mb-6">
+                        TECH_STACK //
+                    </h4>
+                    <div class="space-y-6">
+                        <div>
+                            <p class="font-bold text-lg tracking-tight">Backend Core</p>
+                            <p class="text-white/50 text-sm font-mono">Python / Django / FastAPI / Golang</p>
+                        </div>
+                         <div>
+                            <p class="font-bold text-lg tracking-tight">Frontend Matrix</p>
+                            <p class="text-white/50 text-sm font-mono">TypeScript / React / Vue / Svelte</p>
+                        </div>
+                         <div>
+                            <p class="font-bold text-lg tracking-tight">Neural Glitch AI</p>
+                            <p class="text-white/50 text-sm font-mono">PyTorch / TensorFlow / Keras</p>
+                        </div>
+                         <div>
+                            <p class="font-bold text-lg tracking-tight">Urban Grid Cloud</p>
+                            <p class="text-white/50 text-sm font-mono">Kubernetes / Docker / Ansible</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 {% endblock %}

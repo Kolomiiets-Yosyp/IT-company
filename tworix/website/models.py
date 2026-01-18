@@ -3,7 +3,7 @@ from django.db import models
 class Project(models.Model):
     title = models.CharField(max_length=100)
     description = models.TextField()
-    image = models.ImageField(upload_to='projects/')
+    image = models.ImageField(upload_to='projects/', blank=True, null=True)
     details = models.TextField(blank=True)
     link = models.URLField(blank=True)
 
@@ -18,3 +18,10 @@ class Contact(models.Model):
 
     def __str__(self):
         return f"{self.name} - {self.email}"
+
+class Content(models.Model):
+    key = models.CharField(max_length=100, unique=True)
+    value = models.TextField()
+
+    def __str__(self):
+        return self.key
