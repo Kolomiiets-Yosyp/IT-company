@@ -26,7 +26,11 @@
                     {% endif %}
                     <h4 class="text-3xl font-black mb-2 tracking-tighter uppercase leading-none">{{ project.title }}</h4>
                     <p class="text-white/40 text-sm leading-relaxed mb-4">
-                        {{ project.description|truncatewords:20 }}
+                        {% if project.short_description %}
+                            {{ project.short_description }}
+                        {% else %}
+                            {{ project.description|truncatewords:20 }}
+                        {% endif %}
                     </p>
                 </div>
                 <div class="relative z-10 flex items-center justify-between mt-auto">
