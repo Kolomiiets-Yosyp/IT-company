@@ -1,56 +1,399 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block title %}{{ project.title }}{% endblock %}
 
 {% block content %}
-<section class="px-6 lg:px-12 py-20 lg:py-32">
-    <div class="max-w-7xl mx-auto">
-        <div class="flex flex-col lg:flex-row gap-16">
-            <div class="lg:w-2/3">
-                {% if project.image %}
-                <div class="aspect-video mb-8 sliced-border border-2 border-primary/50 overflow-hidden">
-                    <img src="{{ project.image.url }}" alt="{{ project.title }}" class="w-full h-full object-cover">
-                </div>
-                {% endif %}
-                <h1 class="text-5xl lg:text-7xl font-black uppercase tracking-tighter leading-none text-primary italic">
-                    {{ project.title }}
-                </h1>
-                <div class="prose prose-invert text-white/80 text-lg leading-relaxed mt-8">
-                    <p>{{ project.description }}</p>
-                </div>
-            </div>
-            <div class="lg:w-1/3">
-                <div class="bg-surface-dark border border-white/10 p-8 sliced-border sticky top-24">
-                    <h3 class="text-xs font-bold text-white/50 tracking-widest uppercase mb-6">INTEL_OVERVIEW</h3>
-                    <div class="space-y-4 font-mono text-sm">
-                        <div class="flex justify-between items-center">
-                            <span class="text-white/40">PROJECT_ID:</span>
-                            <span class="text-primary">TVX_{{ project.id|stringformat:"03d" }}</span>
-                        </div>
-                        <div class="flex justify-between items-center">
-                            <span class="text-white/40">STATUS:</span>
-                            <span class="text-primary">OPERATIONAL</span>
-                        </div>
-                        <div class="flex justify-between items-center">
-                            <span class="text-white/40">GRID_SECTOR:</span>
-                            <span class="text-primary">ALPHA</span>
-                        </div>
-                    </div>
-                    <div class="mt-10 pt-6 border-t border-white/10">
-                         <a href="{% url 'lab' %}" class="group relative bg-white text-black font-black px-10 py-5 text-xl sliced-border hover:translate-x-2 transition-transform w-full text-center inline-block">
-                            <span class="relative z-10">RETURN_TO_LAB</span>
-                            <div class="absolute inset-0 bg-primary translate-x-2 translate-y-2 -z-10 group-hover:translate-x-1 group-hover:translate-y-1 transition-transform"></div>
-                        </a>
-                    </div>
-                </div>
+<!-- Watermark Background Elements -->
+<div class="fixed inset-0 pointer-events-none z-0 overflow-hidden opacity-5">
+    <div class="absolute top-20 -left-10 text-[8rem] font-black text-primary rotate-[-15deg]">TWORIX</div>
+    <div class="absolute bottom-40 -right-10 text-[8rem] font-black text-accent rotate-[12deg]">{{ project.title|upper|truncatechars:10 }}</div>
+</div>
+
+<div class="relative z-10 pt-8">
+    <!-- Hero Section: Photo Card (візитка) -->
+    <section class="max-w-[1200px] mx-auto px-4 py-20 flex justify-center">
+        {% if project.image %}
+        <div class="w-full max-w-[500px] relative group">
+            <div class="absolute -inset-1 bg-gradient-to-r from-primary/30 to-accent/30 rounded-xl blur opacity-25 group-hover:opacity-50 transition duration-1000"></div>
+            <div class="relative bg-[#1a1a1c] rounded-xl border border-white/10 shadow-2xl overflow-hidden shadow-primary/5">
+                <img src="{{ project.image.url }}" alt="{{ project.title }}" class="w-full h-auto object-cover">
             </div>
         </div>
-    </div>
-</section>
+        {% endif %}
+    </section>
+
+    <!-- Intro Text -->
+    <section class="max-w-[800px] mx-auto px-4 pb-24 text-center">
+        <h1 class="text-white tracking-tight text-4xl md:text-5xl font-bold leading-tight pb-6 pt-6">
+            {% if project.intro_title %}
+                {{ project.intro_title|upper }}
+            {% else %}
+                {{ project.title|upper }} <span class="text-primary">PROJECT</span>
+            {% endif %}
+        </h1>
+        <p class="text-white/70 text-lg font-normal leading-relaxed px-4">
+            {% if project.intro_description %}
+                {{ project.intro_description|linebreaks }}
+            {% else %}
+                {{ project.description|linebreaks }}
+            {% endif %}
+        </p>
+    </section>
+
+    <!-- Section: Architecture / Details -->
+    {% if project.media_items.all or project.architecture_image or project.image %}
+    <section class="max-w-[1200px] mx-auto px-4 py-20">
+        <div class="grid md:grid-cols-2 gap-12 items-center">
+            <!-- Left: Media Slider -->
+            <div class="relative group">
+                <div class="absolute -inset-1 bg-gradient-to-r from-primary/30 to-accent/30 rounded-lg blur opacity-25 group-hover:opacity-50 transition duration-1000"></div>
+                <div class="relative bg-black rounded-lg overflow-hidden border border-white/10 shadow-2xl">
+                    {% if project.media_items.all %}
+                    <!-- Slider Container -->
+                    <div class="media-slider relative w-full aspect-video">
+                        {% if project.media_items.all|length > 1 %}
+                        <!-- Navigation Arrows -->
+                        <button class="slider-nav-btn slider-prev absolute left-4 top-1/2 transform -translate-y-1/2 z-20 bg-black/50 hover:bg-black/80 text-white p-3 rounded-full transition-all duration-300 opacity-0 group-hover:opacity-100" aria-label="Попередній слайд">
+                            <span class="material-symbols-outlined">chevron_left</span>
+                        </button>
+                        <button class="slider-nav-btn slider-next absolute right-4 top-1/2 transform -translate-y-1/2 z-20 bg-black/50 hover:bg-black/80 text-white p-3 rounded-full transition-all duration-300 opacity-0 group-hover:opacity-100" aria-label="Наступний слайд">
+                            <span class="material-symbols-outlined">chevron_right</span>
+                        </button>
+                        {% endif %}
+                        {% for media_item in project.media_items.all %}
+                        <div class="slide absolute inset-0 w-full h-full opacity-0 transition-opacity duration-700 {% if forloop.first %}opacity-100{% endif %}" data-slide-index="{{ forloop.counter0 }}">
+                            {% if media_item.media_type == 'image' and media_item.image %}
+                            <img class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 opacity-80" 
+                                 alt="{{ project.title }} - фото {{ forloop.counter }}" 
+                                 src="{{ media_item.image.url }}"/>
+                            {% elif media_item.media_type == 'video' and media_item.video_url %}
+                            <div class="w-full h-full video-container" data-video-url="{{ media_item.video_url }}">
+                                {% if 'youtube.com/embed' in media_item.video_url or 'youtu.be' in media_item.video_url %}
+                                <iframe class="w-full h-full youtube-video" 
+                                        data-video-url="{{ media_item.video_url }}"
+                                        src="" 
+                                        frameborder="0" 
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                        allowfullscreen></iframe>
+                                {% elif 'player.vimeo.com' in media_item.video_url %}
+                                <iframe class="w-full h-full vimeo-video" 
+                                        src="{{ media_item.video_url }}?autoplay=1&muted=1&loop=1&background=1" 
+                                        frameborder="0" 
+                                        allow="autoplay; fullscreen; picture-in-picture" 
+                                        allowfullscreen></iframe>
+                                {% else %}
+                                <iframe class="w-full h-full" 
+                                        src="{{ media_item.video_url }}?autoplay=1&muted=1&loop=1" 
+                                        frameborder="0" 
+                                        allow="autoplay; fullscreen; picture-in-picture" 
+                                        allowfullscreen></iframe>
+                                {% endif %}
+                            </div>
+                            {% endif %}
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <!-- Slider Navigation Dots -->
+                    {% if project.media_items.all|length > 1 %}
+                    <div class="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex gap-2 z-10">
+                        {% for media_item in project.media_items.all %}
+                        <button class="slider-dot w-2 h-2 rounded-full bg-white/30 transition-all duration-300 {% if forloop.first %}bg-primary w-6{% endif %}" 
+                                data-slide-index="{{ forloop.counter0 }}"></button>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                    {% elif project.architecture_image %}
+                    <img class="w-full h-auto grayscale group-hover:grayscale-0 transition-all duration-700 opacity-80" 
+                         alt="{{ project.title }} visual" 
+                         src="{{ project.architecture_image.url }}"/>
+                    {% elif project.image %}
+                    <img class="w-full h-auto grayscale group-hover:grayscale-0 transition-all duration-700 opacity-80" 
+                         alt="{{ project.title }} visual" 
+                         src="{{ project.image.url }}"/>
+                    {% endif %}
+                </div>
+            </div>
+            <!-- Right: Content -->
+            <div class="space-y-6">
+                <h2 class="text-primary text-sm font-bold tracking-[0.3em] uppercase">{{ project.phase01_title|default:"Phase 01" }}</h2>
+                <h3 class="text-white text-4xl font-bold leading-tight">{{ project.phase01_subtitle|default:"PROJECT OVERVIEW" }}</h3>
+                {% if project.phase01_description %}
+                <p class="text-white/60 text-base leading-relaxed">
+                    {{ project.phase01_description|linebreaks }}
+                </p>
+                {% elif project.details %}
+                <p class="text-white/60 text-base leading-relaxed">
+                    {{ project.details|linebreaks }}
+                </p>
+                {% else %}
+                <p class="text-white/60 text-base leading-relaxed">
+                    This project represents a cutting-edge approach to modern web development, combining innovative design with robust functionality. Built with precision and attention to detail, it showcases the power of fragmented intelligence in digital architecture.
+                </p>
+                {% endif %}
+                <ul class="space-y-3">
+                    {% if project.phase01_feature1 %}
+                    <li class="flex items-center gap-3 text-white/80">
+                        <span class="material-symbols-outlined text-primary text-xl">check_circle</span>
+                        <span>{{ project.phase01_feature1 }}</span>
+                    </li>
+                    {% endif %}
+                    {% if project.phase01_feature2 %}
+                    <li class="flex items-center gap-3 text-white/80">
+                        <span class="material-symbols-outlined text-primary text-xl">check_circle</span>
+                        <span>{{ project.phase01_feature2 }}</span>
+                    </li>
+                    {% endif %}
+                </ul>
+                {% if project.link %}
+                <a href="{{ project.link }}" target="_blank" class="inline-block bg-primary/10 border border-primary text-primary px-8 py-4 font-bold uppercase text-xs tracking-widest rounded-sm hover:bg-primary hover:text-background-dark transition-all duration-300">
+                    {{ project.phase01_button_text|default:"Explore Project" }}
+                </a>
+                {% endif %}
+            </div>
+        </div>
+    </section>
+    {% endif %}
+
+    <!-- Section: Tech Stack / Additional Info -->
+    <section class="max-w-[1200px] mx-auto px-4 py-20">
+        <div class="max-w-[800px] mx-auto space-y-6">
+            <h2 class="text-accent text-sm font-bold tracking-[0.3em] uppercase">{{ project.phase02_title|default:"Phase 02" }}</h2>
+            <h3 class="text-white text-4xl font-bold leading-tight">{{ project.phase02_subtitle|default:"TECH STACK" }}</h3>
+            <p class="text-white/60 text-base leading-relaxed">
+                {{ project.phase02_description|default:"Built on a foundation of reliability and scale. Our choice of technologies reflects a commitment to a developer-first experience and lightning-fast performance across all platforms."|linebreaks }}
+            </p>
+            {% if project.tech_stack_items.all %}
+            <div class="grid grid-cols-2 gap-4 mt-8">
+                {% for item in project.tech_stack_items.all %}
+                <div class="p-4 bg-white/5 border border-white/10 rounded-lg">
+                    <h4 class="text-white font-bold mb-1">{{ item.name }}</h4>
+                    <p class="text-white/40 text-xs">{{ item.description }}</p>
+                </div>
+                {% endfor %}
+            </div>
+            {% endif %}
+        </div>
+    </section>
+</div>
 
 <style>
-.prose {
-    max-width: none;
+.sliced-btn {
+    clip-path: polygon(10% 0, 100% 0, 100% 70%, 90% 100%, 0 100%, 0 30%);
+}
+.rounded-xl {
+    border-radius: 0.75rem;
+}
+.rounded-lg {
+    border-radius: 0.5rem;
+}
+.rounded-sm {
+    border-radius: 0.125rem;
+}
+.rounded-md {
+    border-radius: 0.375rem;
+}
+.media-slider {
+    min-height: 400px;
+}
+.slider-nav-btn {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(4px);
+}
+.slider-nav-btn:hover {
+    transform: translateY(-50%) scale(1.1);
+}
+.slider-nav-btn:active {
+    transform: translateY(-50%) scale(0.95);
 }
 </style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const slider = document.querySelector('.media-slider');
+    if (!slider) return;
+    
+    const slides = slider.querySelectorAll('.slide');
+    const dots = document.querySelectorAll('.slider-dot');
+    let currentSlide = 0;
+    const slideCount = slides.length;
+    
+    if (slideCount <= 1) return;
+    
+    // Функція для отримання video ID з YouTube URL
+    function getYouTubeVideoId(url) {
+        if (!url) return null;
+        // Обробка різних форматів YouTube URL
+        let match = url.match(/youtube\.com\/embed\/([^&\n?#]+)/);
+        if (match) return match[1];
+        match = url.match(/youtu\.be\/([^&\n?#]+)/);
+        if (match) return match[1];
+        match = url.match(/youtube\.com\/watch\?v=([^&\n?#]+)/);
+        if (match) return match[1];
+        return null;
+    }
+    
+    // Функція для налаштування YouTube відео
+    function setupYouTubeVideo(iframe) {
+        const videoUrl = iframe.getAttribute('data-video-url');
+        if (!videoUrl) return;
+        
+        const videoId = getYouTubeVideoId(videoUrl);
+        if (videoId) {
+            const src = `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&loop=1&playlist=${videoId}&controls=0&modestbranding=1&rel=0`;
+            iframe.src = src;
+        }
+    }
+    
+    // Функція для показу слайду
+    function showSlide(index) {
+        // Приховуємо всі слайди та зупиняємо відео
+        slides.forEach((slide, i) => {
+            if (i !== index) {
+                slide.style.opacity = '0';
+                slide.style.zIndex = '1';
+                // Зупиняємо відео в неактивних слайдах
+                const videoIframe = slide.querySelector('iframe');
+                if (videoIframe) {
+                    const videoSrc = videoIframe.src;
+                    videoIframe.src = '';
+                    videoIframe.setAttribute('data-paused-src', videoSrc);
+                }
+            }
+        });
+        
+        // Показуємо активний слайд та запускаємо відео
+        const activeSlide = slides[index];
+        activeSlide.style.opacity = '1';
+        activeSlide.style.zIndex = '10';
+        
+        // Запускаємо відео в активному слайді
+        const activeVideoIframe = activeSlide.querySelector('iframe');
+        if (activeVideoIframe) {
+            if (activeVideoIframe.classList.contains('youtube-video')) {
+                // Для YouTube відео налаштовуємо з правильними параметрами
+                setupYouTubeVideo(activeVideoIframe);
+            } else {
+                // Для інших відео відновлюємо або перезавантажуємо
+                const pausedSrc = activeVideoIframe.getAttribute('data-paused-src');
+                if (pausedSrc) {
+                    activeVideoIframe.src = pausedSrc;
+                } else {
+                    const originalSrc = activeVideoIframe.src;
+                    if (originalSrc) {
+                        activeVideoIframe.src = originalSrc;
+                    }
+                }
+            }
+        }
+        
+        // Оновлюємо точки навігації
+        dots.forEach((dot, i) => {
+            if (i === index) {
+                dot.classList.add('bg-primary', 'w-6');
+                dot.classList.remove('bg-white/30', 'w-2');
+            } else {
+                dot.classList.remove('bg-primary', 'w-6');
+                dot.classList.add('bg-white/30', 'w-2');
+            }
+        });
+        
+        currentSlide = index;
+    }
+    
+    // Функція для скидання таймера
+    function resetAutoSlide() {
+        clearInterval(autoSlideInterval);
+        autoSlideInterval = setInterval(() => {
+            const nextSlide = (currentSlide + 1) % slideCount;
+            showSlide(nextSlide);
+        }, 3000);
+    }
+    
+    // Функція для переходу до наступного слайду
+    function nextSlide() {
+        const next = (currentSlide + 1) % slideCount;
+        showSlide(next);
+        resetAutoSlide();
+    }
+    
+    // Функція для переходу до попереднього слайду
+    function prevSlide() {
+        const prev = (currentSlide - 1 + slideCount) % slideCount;
+        showSlide(prev);
+        resetAutoSlide();
+    }
+    
+    // Автоматичне перегортання кожні 3 секунди
+    let autoSlideInterval = setInterval(() => {
+        nextSlide();
+    }, 3000);
+    
+    // Обробка кліків на точки навігації
+    dots.forEach((dot, index) => {
+        dot.addEventListener('click', () => {
+            showSlide(index);
+            resetAutoSlide();
+        });
+    });
+    
+    // Кнопки навігації (стрілки)
+    const prevBtn = document.querySelector('.slider-prev');
+    const nextBtn = document.querySelector('.slider-next');
+    
+    if (prevBtn) {
+        prevBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            prevSlide();
+        });
+    }
+    
+    if (nextBtn) {
+        nextBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            nextSlide();
+        });
+    }
+    
+    // Підтримка клавіатури (стрілки вліво/вправо)
+    document.addEventListener('keydown', (e) => {
+        if (slider.matches(':hover')) {
+            if (e.key === 'ArrowLeft') {
+                e.preventDefault();
+                prevSlide();
+            } else if (e.key === 'ArrowRight') {
+                e.preventDefault();
+                nextSlide();
+            }
+        }
+    });
+    
+    // Зупинка автоматичного перегортання при наведенні
+    slider.addEventListener('mouseenter', () => {
+        clearInterval(autoSlideInterval);
+        // Показуємо кнопки навігації
+        if (prevBtn) prevBtn.style.opacity = '1';
+        if (nextBtn) nextBtn.style.opacity = '1';
+    });
+    
+    // Відновлення автоматичного перегортання при відведенні
+    slider.addEventListener('mouseleave', () => {
+        resetAutoSlide();
+        // Приховуємо кнопки навігації
+        if (prevBtn) prevBtn.style.opacity = '0';
+        if (nextBtn) nextBtn.style.opacity = '0';
+    });
+    
+    // Ініціалізуємо перший слайд та налаштовуємо YouTube відео
+    const allYouTubeVideos = slider.querySelectorAll('.youtube-video');
+    allYouTubeVideos.forEach(iframe => {
+        setupYouTubeVideo(iframe);
+    });
+    
+    showSlide(0);
+});
+</script>
 {% endblock %}
