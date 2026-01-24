@@ -16,45 +16,8 @@
                     {{ project.title }}
                 </h1>
                 <div class="prose prose-invert text-white/80 text-lg leading-relaxed mt-8">
-                    <p>{{ project.description|linebreaks }}</p>
+                    <p>{{ project.description }}</p>
                 </div>
-                
-                {% if project.media.all %}
-                <div class="mt-12 space-y-8">
-                    <h2 class="text-3xl font-black uppercase tracking-tighter text-primary mb-6">ADDITIONAL_MEDIA</h2>
-                    <div class="grid grid-cols-1 gap-8">
-                        {% for media_item in project.media.all %}
-                            {% if media_item.media_type == 'image' and media_item.image %}
-                            <div class="sliced-border border-2 border-white/10 overflow-hidden">
-                                <img src="{{ media_item.image.url }}" alt="{{ project.title }} - фото {{ forloop.counter }}" class="w-full h-auto object-cover">
-                            </div>
-                            {% elif media_item.media_type == 'video' and media_item.video_url %}
-                            <div class="aspect-video sliced-border border-2 border-white/10 overflow-hidden bg-black">
-                                {% if 'youtube.com/embed' in media_item.video_url or 'youtu.be' in media_item.video_url or 'youtube.com/watch' in media_item.video_url %}
-                                    {% if 'youtube.com/embed' in media_item.video_url %}
-                                        <iframe class="w-full h-full" src="{{ media_item.video_url }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                                    {% else %}
-                                        <div class="w-full h-full flex items-center justify-center text-white/50 p-4">
-                                            <p class="text-center text-sm">Please use embed URL for YouTube<br/>(e.g., https://www.youtube.com/embed/VIDEO_ID)</p>
-                                        </div>
-                                    {% endif %}
-                                {% elif 'vimeo.com' in media_item.video_url %}
-                                    {% if 'player.vimeo.com' in media_item.video_url %}
-                                        <iframe class="w-full h-full" src="{{ media_item.video_url }}" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
-                                    {% else %}
-                                        <div class="w-full h-full flex items-center justify-center text-white/50 p-4">
-                                            <p class="text-center text-sm">Please use embed URL for Vimeo<br/>(e.g., https://player.vimeo.com/video/VIDEO_ID)</p>
-                                        </div>
-                                    {% endif %}
-                                {% else %}
-                                    <iframe class="w-full h-full" src="{{ media_item.video_url }}" frameborder="0" allowfullscreen></iframe>
-                                {% endif %}
-                            </div>
-                            {% endif %}
-                        {% endfor %}
-                    </div>
-                </div>
-                {% endif %}
             </div>
             <div class="lg:w-1/3">
                 <div class="bg-surface-dark border border-white/10 p-8 sliced-border sticky top-24">

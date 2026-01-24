@@ -45,7 +45,30 @@
     <div class="absolute top-[20%] right-1/4 text-6xl graffiti-tag rotate-12">EST_2024</div>
 </div>
 <div class="relative z-10 flex min-h-screen">
-    <main class="flex-1 flex flex-col w-full">
+    <aside class="hidden lg:flex w-20 flex-col items-center py-10 border-r border-white/5 bg-background-dark/90 backdrop-blur-xl sticky top-0 h-screen">
+        <div class="mb-12 relative">
+            <span class="material-symbols-outlined text-primary text-4xl">view_in_ar</span>
+            <div class="absolute -bottom-2 -right-2 text-[8px] font-graffiti text-accent rotate-12">TVX</div>
+        </div>
+        <nav class="flex flex-col gap-12 items-center flex-1">
+            <a class="group relative flex items-center" href="{% url 'build' %}">
+                <span class="material-symbols-outlined transition-all group-hover:text-primary">terminal</span>
+                <span class="absolute left-14 bg-primary text-black px-2 py-1 text-xs font-bold opacity-0 group-hover:opacity-100 transition-opacity">BUILD</span>
+            </a>
+            <a class="group relative flex items-center" href="{% url 'grid' %}">
+                <span class="material-symbols-outlined transition-all group-hover:text-primary">grid_view</span>
+                <span class="absolute left-14 bg-primary text-black px-2 py-1 text-xs font-bold opacity-0 group-hover:opacity-100 transition-opacity">GRID</span>
+            </a>
+            <a class="group relative flex items-center" href="{% url 'core' %}">
+                <span class="material-symbols-outlined transition-all group-hover:text-primary">electric_bolt</span>
+                <span class="absolute left-14 bg-primary text-black px-2 py-1 text-xs font-bold opacity-0 group-hover:opacity-100 transition-opacity">CORE</span>
+            </a>
+        </nav>
+        <div class="rotate-180 flex items-center [writing-mode:vertical-lr] text-[10px] tracking-widest text-white/20 font-bold uppercase">
+            Tworix_SYSTEMS // SLICED_VER_1.0.2
+        </div>
+    </aside>
+    <main class="flex-1 flex flex-col">
         <header class="flex items-center justify-between px-6 lg:px-12 py-6 border-b border-white/5 backdrop-blur-sm">
             <div class="flex items-center gap-3">
                 <a href="{% url 'index' %}" class="flex items-center gap-3">
