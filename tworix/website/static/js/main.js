@@ -4,6 +4,9 @@ document.addEventListener('DOMContentLoaded', function() {
     const closeBtn = document.getElementById('close-modal-btn');
     const form = document.getElementById('contact-form-modal');
     const responseMessage = document.getElementById('response-message-modal');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const closeMobileMenuBtn = document.getElementById('close-mobile-menu-btn');
 
     function openModal() {
         if(modal) modal.classList.remove('hidden');
@@ -17,8 +20,24 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
+    function openMobileMenu() {
+        if(mobileMenu) mobileMenu.classList.remove('hidden');
+    }
+
+    function closeMobileMenu() {
+        if(mobileMenu) mobileMenu.classList.add('hidden');
+    }
+
+    // Make functions globally available
+    window.openModal = openModal;
+    window.closeMobileMenu = closeMobileMenu;
+
     if(openBtn) openBtn.addEventListener('click', openModal);
     if(closeBtn) closeBtn.addEventListener('click', closeModal);
+
+    if(mobileMenuBtn) mobileMenuBtn.addEventListener('click', openMobileMenu);
+    if(closeMobileMenuBtn) closeMobileMenuBtn.addEventListener('click', closeMobileMenu);
+
 
     // Close modal if clicking outside the content
     if(modal) modal.addEventListener('click', function(e) {
