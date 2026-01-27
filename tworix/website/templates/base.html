@@ -79,13 +79,16 @@
                 </a>
             </div>
             <div class="flex items-center gap-8">
-                <div class="hidden md:flex gap-8 text-sm font-medium tracking-tight">
+                <div class="hidden lg:flex gap-8 text-sm font-medium tracking-tight">
                     <a class="hover:text-primary transition-colors decoration-accent/50 underline-offset-8 hover:underline" href="{% url 'solutions' %}">SOLUTIONS</a>
                     <a class="hover:text-primary transition-colors" href="{% url 'lab' %}">THE_LAB</a>
                     <a class="hover:text-primary transition-colors" href="{% url 'connect' %}">CONNECT</a>
                 </div>
-<button onclick="openModal()" id="open-modal-btn" class="bg-primary text-black font-black text-xs px-6 py-3 sliced-border hover:bg-accent hover:text-white transition-all">
+                <button onclick="openModal()" id="open-modal-btn" class="hidden lg:block bg-primary text-black font-black text-xs px-6 py-3 sliced-border hover:bg-accent hover:text-white transition-all">
                     CONTACT US
+                </button>
+                <button id="mobile-menu-btn" class="lg:hidden text-white">
+                    <span class="material-symbols-outlined">menu</span>
                 </button>
             </div>
         </header>
@@ -173,6 +176,31 @@
             </div>
         </form>
         <div id="response-message-modal" class="mt-6 text-center"></div>
+    </div>
+</div>
+
+<!-- Mobile Menu -->
+<div id="mobile-menu" class="fixed inset-0 bg-background-dark z-[100] hidden lg:hidden">
+    <div class="flex items-center justify-between px-6 py-6 border-b border-white/5">
+        <a href="{% url 'index' %}" class="flex items-center gap-3">
+            <div class="h-10 w-10 bg-primary flex items-center justify-center sliced-border rotate-3">
+                <span class="material-symbols-outlined text-black font-black">box</span>
+            </div>
+            <h2 class="text-2xl font-black tracking-tighter uppercase">Tworix<span class="text-primary italic">_01</span></h2>
+        </a>
+        <button id="close-mobile-menu-btn" class="text-white">
+            <span class="material-symbols-outlined">close</span>
+        </button>
+    </div>
+    <div class="flex flex-col items-center justify-center h-full -mt-20">
+        <nav class="flex flex-col items-center gap-8 text-2xl font-bold text-center">
+            <a href="{% url 'solutions' %}" class="hover:text-primary transition-colors">SOLUTIONS</a>
+            <a href="{% url 'lab' %}" class="hover:text-primary transition-colors">THE_LAB</a>
+            <a href="{% url 'connect' %}" class="hover:text-primary transition-colors">CONNECT</a>
+        </nav>
+        <button onclick="openModal(); closeMobileMenu();" class="mt-12 bg-primary text-black font-black text-lg px-8 py-4 sliced-border hover:bg-accent hover:text-white transition-all">
+            CONTACT US
+        </button>
     </div>
 </div>
 
