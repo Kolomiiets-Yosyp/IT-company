@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const mobileMenu = document.getElementById('mobile-menu');
     const mobileMenuBtn = document.getElementById('mobile-menu-btn');
     const closeMobileMenuBtn = document.getElementById('close-mobile-menu-btn');
+    const mobileMenuBtnIcon = mobileMenuBtn ? mobileMenuBtn.querySelector('span') : null;
 
     function openModal() {
         if(modal) modal.classList.remove('hidden');
@@ -20,23 +21,27 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    function openMobileMenu() {
-        if(mobileMenu) mobileMenu.classList.remove('hidden');
-    }
-
-    function closeMobileMenu() {
-        if(mobileMenu) mobileMenu.classList.add('hidden');
+    function toggleMobileMenu() {
+        if (!mobileMenu) return;
+        const isHidden = mobileMenu.classList.contains('hidden');
+        if (isHidden) {
+            mobileMenu.classList.remove('hidden');
+            if (mobileMenuBtnIcon) mobileMenuBtnIcon.textContent = 'close';
+        } else {
+            mobileMenu.classList.add('hidden');
+            if (mobileMenuBtnIcon) mobileMenuBtnIcon.textContent = 'menu';
+        }
     }
 
     // Make functions globally available
     window.openModal = openModal;
-    window.closeMobileMenu = closeMobileMenu;
+    window.closeMobileMenu = toggleMobileMenu;
 
     if(openBtn) openBtn.addEventListener('click', openModal);
     if(closeBtn) closeBtn.addEventListener('click', closeModal);
 
-    if(mobileMenuBtn) mobileMenuBtn.addEventListener('click', openMobileMenu);
-    if(closeMobileMenuBtn) closeMobileMenuBtn.addEventListener('click', closeMobileMenu);
+    if(mobileMenuBtn) mobileMenuBtn.addEventListener('click', toggleMobileMenu);
+    if(closeMobileMenuBtn) closeMobileMenuBtn.addEventListener('click', toggleMobileMenu);
 
 
     // Close modal if clicking outside the content
