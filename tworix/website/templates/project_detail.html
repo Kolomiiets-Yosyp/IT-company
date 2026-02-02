@@ -43,10 +43,10 @@
 
     <!-- Section: Architecture / Details -->
     {% if project.media_items.all or project.architecture_image or project.image %}
-    <section class="max-w-[1200px] mx-auto px-4 py-20">
-        <div class="grid md:grid-cols-2 gap-12 items-center">
-            <!-- Left: Media Slider -->
-            <div class="relative group">
+    <section class="max-w-[90%] mx-auto px-4 py-20">
+        <div class="grid md:grid-cols-2 gap-12 items-start">
+            <!-- Left: Media Slider (sticky while right content scrolls) -->
+            <div class="relative group md:sticky md:top-24 md:self-start">
                 <div class="absolute -inset-1 bg-gradient-to-r from-primary/30 to-accent/30 rounded-lg blur opacity-25 group-hover:opacity-50 transition duration-1000"></div>
                 <div class="relative bg-black rounded-lg overflow-hidden border border-white/10 shadow-2xl">
                     {% if project.media_items.all %}
@@ -64,29 +64,29 @@
                         {% for media_item in project.media_items.all %}
                         <div class="slide absolute inset-0 w-full h-full opacity-0 transition-opacity duration-700 {% if forloop.first %}opacity-100{% endif %}" data-slide-index="{{ forloop.counter0 }}">
                             {% if media_item.media_type == 'image' and media_item.image %}
-                            <img class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 opacity-80" 
-                                 alt="{{ project.title }} - фото {{ forloop.counter }}" 
+                            <img class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 opacity-80"
+                                 alt="{{ project.title }} - фото {{ forloop.counter }}"
                                  src="{{ media_item.image.url }}"/>
                             {% elif media_item.media_type == 'video' and media_item.video_url %}
                             <div class="w-full h-full video-container" data-video-url="{{ media_item.video_url }}">
                                 {% if 'youtube.com/embed' in media_item.video_url or 'youtu.be' in media_item.video_url %}
-                                <iframe class="w-full h-full youtube-video" 
+                                <iframe class="w-full h-full youtube-video"
                                         data-video-url="{{ media_item.video_url }}"
-                                        src="" 
-                                        frameborder="0" 
-                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                        src=""
+                                        frameborder="0"
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                         allowfullscreen></iframe>
                                 {% elif 'player.vimeo.com' in media_item.video_url %}
-                                <iframe class="w-full h-full vimeo-video" 
-                                        src="{{ media_item.video_url }}?autoplay=1&muted=1&loop=1&background=1" 
-                                        frameborder="0" 
-                                        allow="autoplay; fullscreen; picture-in-picture" 
+                                <iframe class="w-full h-full vimeo-video"
+                                        src="{{ media_item.video_url }}?autoplay=1&muted=1&loop=1&background=1"
+                                        frameborder="0"
+                                        allow="autoplay; fullscreen; picture-in-picture"
                                         allowfullscreen></iframe>
                                 {% else %}
-                                <iframe class="w-full h-full" 
-                                        src="{{ media_item.video_url }}?autoplay=1&muted=1&loop=1" 
-                                        frameborder="0" 
-                                        allow="autoplay; fullscreen; picture-in-picture" 
+                                <iframe class="w-full h-full"
+                                        src="{{ media_item.video_url }}?autoplay=1&muted=1&loop=1"
+                                        frameborder="0"
+                                        allow="autoplay; fullscreen; picture-in-picture"
                                         allowfullscreen></iframe>
                                 {% endif %}
                             </div>
@@ -98,18 +98,18 @@
                     {% if project.media_items.all|length > 1 %}
                     <div class="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex gap-2 z-10">
                         {% for media_item in project.media_items.all %}
-                        <button class="slider-dot w-2 h-2 rounded-full bg-white/30 transition-all duration-300 {% if forloop.first %}bg-primary w-6{% endif %}" 
+                        <button class="slider-dot w-2 h-2 rounded-full bg-white/30 transition-all duration-300 {% if forloop.first %}bg-primary w-6{% endif %}"
                                 data-slide-index="{{ forloop.counter0 }}"></button>
                         {% endfor %}
                     </div>
                     {% endif %}
                     {% elif project.architecture_image %}
-                    <img class="w-full h-auto grayscale group-hover:grayscale-0 transition-all duration-700 opacity-80" 
-                         alt="{{ project.title }} visual" 
+                    <img class="w-full h-auto grayscale group-hover:grayscale-0 transition-all duration-700 opacity-80"
+                         alt="{{ project.title }} visual"
                          src="{{ project.architecture_image.url }}"/>
                     {% elif project.image %}
-                    <img class="w-full h-auto grayscale group-hover:grayscale-0 transition-all duration-700 opacity-80" 
-                         alt="{{ project.title }} visual" 
+                    <img class="w-full h-auto grayscale group-hover:grayscale-0 transition-all duration-700 opacity-80"
+                         alt="{{ project.title }} visual"
                          src="{{ project.image.url }}"/>
                     {% endif %}
                 </div>
@@ -150,12 +150,7 @@
                     {{ project.phase01_button_text|default:"Explore Project" }}
                 </a>
                 {% endif %}
-            </div>
-        </div>
-    </section>
-    {% endif %}
-
-    <!-- Section: Tech Stack / Additional Info -->
+                <!-- Section: Tech Stack / Additional Info -->
     <section class="max-w-[1200px] mx-auto px-4 py-20">
         <div class="max-w-[800px] mx-auto space-y-6">
             <h2 class="text-accent text-sm font-bold tracking-[0.3em] uppercase">{{ project.phase02_title|default:"Phase 02" }}</h2>
@@ -175,6 +170,12 @@
             {% endif %}
         </div>
     </section>
+            </div>
+        </div>
+    </section>
+    {% endif %}
+
+
 </div>
 
 <style>
