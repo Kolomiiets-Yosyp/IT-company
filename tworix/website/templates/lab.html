@@ -21,7 +21,7 @@
                 <div class="relative z-10">
                     {% if project.image %}
                     <div class="aspect-video mb-6 overflow-hidden sliced-border border border-white/10">
-                        <img src="{{ project.image.url }}" alt="{{ project.title }} preview" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500">
+                        <img src="{{ project.image.url }}" alt="{{ project.title }} preview" class="w-full h-full object-cover  transition-all duration-500">
                     </div>
                     {% endif %}
                     <h4 class="text-3xl font-black mb-2 tracking-tighter uppercase leading-none">{{ project.title }}</h4>
