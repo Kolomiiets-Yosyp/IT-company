@@ -64,7 +64,7 @@
                         {% for media_item in project.media_items.all %}
                         <div class="slide absolute inset-0 w-full h-full opacity-0 transition-opacity duration-700 {% if forloop.first %}opacity-100{% endif %}" data-slide-index="{{ forloop.counter0 }}">
                             {% if media_item.media_type == 'image' and media_item.image %}
-                            <img class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 opacity-80" 
+                            <img class="w-full h-full object-contain grayscale group-hover:grayscale-0 transition-all duration-700 opacity-80"
                                  alt="{{ project.title }} - фото {{ forloop.counter }}" 
                                  src="{{ media_item.image.url }}"/>
                             {% elif media_item.media_type == 'video' and media_item.video_url %}
