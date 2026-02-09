@@ -48,7 +48,7 @@
     <aside class="hidden lg:flex w-20 flex-col items-center py-10 border-r border-white/5 bg-background-dark/90 backdrop-blur-xl sticky top-0 h-screen">
         <div class="mb-12 relative">
             <span class="material-symbols-outlined text-primary text-4xl">view_in_ar</span>
-            <div class="absolute -bottom-2 -right-2 text-[8px] font-graffiti text-accent rotate-12">TVX</div>
+            <div class="absolute -bottom-2 -right-2 text-[8px] font-graffiti text-accent rotate-12">TWX</div>
         </div>
         <nav class="flex flex-col gap-12 items-center flex-1">
             <a class="group relative flex items-center" href="{% url 'build' %}">
@@ -75,13 +75,13 @@
                     <div class="h-10 w-10 bg-primary flex items-center justify-center sliced-border rotate-3">
                         <span class="material-symbols-outlined text-black font-black">box</span>
                     </div>
-                    <h2 class="text-2xl font-black tracking-tighter uppercase">Tworix<span class="text-primary italic">_01</span></h2>
+                    <h2 class="text-2xl font-black tracking-tighter uppercase">Tworix<span class="text-primary italic">.dev</span></h2>
                 </a>
             </div>
             <div class="flex items-center gap-8">
                 <div class="hidden lg:flex gap-8 text-sm font-medium tracking-tight">
                     <a class="hover:text-primary transition-colors decoration-accent/50 underline-offset-8 hover:underline" href="{% url 'solutions' %}">SOLUTIONS</a>
-                    <a class="hover:text-primary transition-colors" href="{% url 'lab' %}">THE_LAB</a>
+                    <a class="hover:text-primary transition-colors" href="{% url 'lab' %}">PROJECTS</a>
                     <a class="hover:text-primary transition-colors" href="{% url 'connect' %}">CONNECT</a>
                 </div>
                 <button onclick="openModal()" id="open-modal-btn" class="hidden lg:block bg-primary text-black font-black text-xs px-6 py-3 sliced-border hover:bg-accent hover:text-white transition-all">
@@ -131,9 +131,39 @@
                     <div class="space-y-4">
                         <h4 class="text-xs font-bold text-white/50 tracking-widest uppercase">SYSTEMS</h4>
                         <div class="font-mono text-[10px] space-y-1">
-                            <div class="text-primary flex justify-between gap-4"><span>CPU_LOAD:</span> <span>12%</span></div>
-                            <div class="text-white/30 flex justify-between gap-4"><span>PING:</span> <span>22ms</span></div>
-                            <div class="text-white/30 flex justify-between gap-4"><span>IP:</span> <span>192.1.0.24</span></div>
+<div class="text-primary flex justify-between gap-4">
+    <span>CPU_LOAD:</span>
+    <span id="cpu-val">12%</span>
+</div>
+
+<div class="text-white/30 flex justify-between gap-4">
+    <span>PING:</span>
+    <span id="my-data">22ms</span>
+</div>
+
+<script>
+    setInterval(() => {
+        // --- 1. Оновлення PING ---
+        // Генеруємо випадковий пінг (наприклад, від 20 до 90)
+        const newPing = Math.floor(Math.random() * (40 - 20 + 1)) + 20;
+        const pingEl = document.getElementById('my-data');
+        if (pingEl) {
+            pingEl.innerText = newPing + 'ms';
+
+        }
+
+        // --- 2. Оновлення CPU ---
+        // Генеруємо випадкове навантаження (наприклад, від 5% до 40%)
+        const newCpu = Math.floor(Math.random() * (20 - 5 + 1)) + 5;
+        const cpuEl = document.getElementById('cpu-val');
+        if (cpuEl) {
+            cpuEl.innerText = newCpu + '%';
+        }
+
+    }, 3000); // 3000 мс = 3 секунди
+</script>
+
+                            <div class="text-white/30 flex justify-between gap-4"><span>IP:</span> <span>142.93.136.85</span></div>
                         </div>
                     </div>
                 </div>
@@ -186,7 +216,7 @@
             <div class="h-10 w-10 bg-primary flex items-center justify-center sliced-border rotate-3">
                 <span class="material-symbols-outlined text-black font-black">box</span>
             </div>
-            <h2 class="text-2xl font-black tracking-tighter uppercase">Tworix<span class="text-primary italic">_01</span></h2>
+            <h2 class="text-2xl font-black tracking-tighter uppercase">Tworix<span class="text-primary italic">_dev</span></h2>
         </a>
         <button id="close-mobile-menu-btn" class="text-white">
             <span class="material-symbols-outlined">close</span>

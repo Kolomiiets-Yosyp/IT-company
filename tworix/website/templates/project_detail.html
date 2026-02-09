@@ -216,14 +216,14 @@
 document.addEventListener('DOMContentLoaded', function() {
     const slider = document.querySelector('.media-slider');
     if (!slider) return;
-    
+
     const slides = slider.querySelectorAll('.slide');
     const dots = document.querySelectorAll('.slider-dot');
     let currentSlide = 0;
     const slideCount = slides.length;
-    
+
     if (slideCount <= 1) return;
-    
+
     // Функція для отримання video ID з YouTube URL
     function getYouTubeVideoId(url) {
         if (!url) return null;
@@ -236,19 +236,19 @@ document.addEventListener('DOMContentLoaded', function() {
         if (match) return match[1];
         return null;
     }
-    
+
     // Функція для налаштування YouTube відео
     function setupYouTubeVideo(iframe) {
         const videoUrl = iframe.getAttribute('data-video-url');
         if (!videoUrl) return;
-        
+
         const videoId = getYouTubeVideoId(videoUrl);
         if (videoId) {
             const src = `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&loop=1&playlist=${videoId}&controls=0&modestbranding=1&rel=0`;
             iframe.src = src;
         }
     }
-    
+
     // Функція для показу слайду
     function showSlide(index) {
         // Приховуємо всі слайди та зупиняємо відео
@@ -265,12 +265,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             }
         });
-        
+
         // Показуємо активний слайд та запускаємо відео
         const activeSlide = slides[index];
         activeSlide.style.opacity = '1';
         activeSlide.style.zIndex = '10';
-        
+
         // Запускаємо відео в активному слайді
         const activeVideoIframe = activeSlide.querySelector('iframe');
         if (activeVideoIframe) {
@@ -290,7 +290,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             }
         }
-        
+
         // Оновлюємо точки навігації
         dots.forEach((dot, i) => {
             if (i === index) {
@@ -301,10 +301,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 dot.classList.add('bg-white/30', 'w-2');
             }
         });
-        
+
         currentSlide = index;
     }
-    
+
     // Функція для скидання таймера
     function resetAutoSlide() {
         clearInterval(autoSlideInterval);
@@ -313,26 +313,26 @@ document.addEventListener('DOMContentLoaded', function() {
             showSlide(nextSlide);
         }, 3000);
     }
-    
+
     // Функція для переходу до наступного слайду
     function nextSlide() {
         const next = (currentSlide + 1) % slideCount;
         showSlide(next);
         resetAutoSlide();
     }
-    
+
     // Функція для переходу до попереднього слайду
     function prevSlide() {
         const prev = (currentSlide - 1 + slideCount) % slideCount;
         showSlide(prev);
         resetAutoSlide();
     }
-    
+
     // Автоматичне перегортання кожні 3 секунди
     let autoSlideInterval = setInterval(() => {
         nextSlide();
     }, 3000);
-    
+
     // Обробка кліків на точки навігації
     dots.forEach((dot, index) => {
         dot.addEventListener('click', () => {
@@ -340,25 +340,25 @@ document.addEventListener('DOMContentLoaded', function() {
             resetAutoSlide();
         });
     });
-    
+
     // Кнопки навігації (стрілки)
     const prevBtn = document.querySelector('.slider-prev');
     const nextBtn = document.querySelector('.slider-next');
-    
+
     if (prevBtn) {
         prevBtn.addEventListener('click', (e) => {
             e.stopPropagation();
             prevSlide();
         });
     }
-    
+
     if (nextBtn) {
         nextBtn.addEventListener('click', (e) => {
             e.stopPropagation();
             nextSlide();
         });
     }
-    
+
     // Підтримка клавіатури (стрілки вліво/вправо)
     document.addEventListener('keydown', (e) => {
         if (slider.matches(':hover')) {
@@ -371,7 +371,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
     });
-    
+
     // Зупинка автоматичного перегортання при наведенні
     slider.addEventListener('mouseenter', () => {
         clearInterval(autoSlideInterval);
@@ -379,7 +379,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (prevBtn) prevBtn.style.opacity = '1';
         if (nextBtn) nextBtn.style.opacity = '1';
     });
-    
+
     // Відновлення автоматичного перегортання при відведенні
     slider.addEventListener('mouseleave', () => {
         resetAutoSlide();
@@ -387,13 +387,13 @@ document.addEventListener('DOMContentLoaded', function() {
         if (prevBtn) prevBtn.style.opacity = '0';
         if (nextBtn) nextBtn.style.opacity = '0';
     });
-    
+
     // Ініціалізуємо перший слайд та налаштовуємо YouTube відео
     const allYouTubeVideos = slider.querySelectorAll('.youtube-video');
     allYouTubeVideos.forEach(iframe => {
         setupYouTubeVideo(iframe);
     });
-    
+
     showSlide(0);
 });
 </script>
