@@ -59,7 +59,7 @@
                 <div class="hidden lg:flex gap-8 text-sm font-medium tracking-tight">
                     <a class="hover:text-primary transition-colors decoration-accent/50 underline-offset-8 hover:underline" href="{% url 'solutions' %}">SOLUTIONS</a>
                     <a class="hover:text-primary transition-colors" href="{% url 'lab' %}">PROJECTS</a>
-                    <a class="hover:text-primary transition-colors" href="{% url 'connect' %}">rules</a>
+                    <a class="hover:text-primary transition-colors" href="{% url 'about' %}">rules</a>
                 </div>
                 <button onclick="openModal()" id="open-modal-btn" class="hidden lg:block bg-primary text-black font-black text-xs px-6 py-3 sliced-border hover:bg-accent hover:text-white transition-all">
                     CONTACT US
@@ -203,7 +203,7 @@
         <nav class="flex flex-col items-center gap-8 text-2xl font-bold text-center">
             <a href="{% url 'solutions' %}" class="hover:text-primary transition-colors">SOLUTIONS</a>
             <a href="{% url 'lab' %}" class="hover:text-primary transition-colors">THE_LAB</a>
-            <a href="{% url 'connect' %}" class="hover:text-primary transition-colors">rules</a>
+            <a href="{% url 'about' %}" class="hover:text-primary transition-colors">rules</a>
         </nav>
         <button onclick="openModal(); closeMobileMenu();" class="mt-12 bg-primary text-black font-black text-lg px-8 py-4 sliced-border hover:bg-accent hover:text-white transition-all">
             CONTACT US
