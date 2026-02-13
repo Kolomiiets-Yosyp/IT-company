@@ -158,7 +158,7 @@
         <button id="close-modal-btn" class="absolute top-4 right-4 text-white hover:text-primary transition-colors">
             <span class="material-symbols-outlined">close</span>
         </button>
-        <h2 class="text-4xl font-black uppercase tracking-tighter mb-6">Open Channel</h2>
+        <h2 class="text-4xl font-black uppercase tracking-tighter mb-6">OPEN CHANNEL</h2>
         <form id="contact-form-modal" class="space-y-6" data-url="{% url 'contact_submit' %}">
             {% csrf_token %}
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -175,10 +175,22 @@
                 <label for="message-modal" class="text-xs font-bold text-white/50 tracking-widest uppercase">Message</label>
                 <textarea id="message-modal" name="message" rows="5" required class="w-full bg-background-dark border-b-2 border-white/10 focus:border-primary transition-all p-3 mt-2 outline-none"></textarea>
             </div>
-            <div class="flex justify-end pt-4">
-                 <button type="submit" class="group relative bg-white text-black font-black px-10 py-5 text-xl sliced-border hover:translate-x-2 transition-transform">
+            <div class="flex items-center justify-between pt-4">
+                <div class="flex items-center gap-3">
+                    <div class="relative flex items-center">
+                        <input type="checkbox" id="rules-checkbox-modal" required
+                               class="peer appearance-none w-6 h-6 border-2 border-primary bg-transparent checked:bg-transparent cursor-pointer">
+                        <span class="material-symbols-outlined absolute pointer-events-none text-primary opacity-0 peer-checked:opacity-100 transition-opacity font-black text-xl">
+                            check
+                        </span>
+                    </div>
+                    <label for="rules-checkbox-modal" class="text-primary text-xs font-bold tracking-widest cursor-pointer">
+                        Allow <a href="{% url 'about' %}" class="underline hover:text-white transition-colors">rules</a> specific
+                    </label>
+                </div>
+                <button type="submit" class="group relative bg-primary text-black font-black px-10 py-5 text-xl sliced-border hover:translate-x-2 transition-transform">
                     <span class="relative z-10">TRANSMIT</span>
-                    <div class="absolute inset-0 bg-primary translate-x-2 translate-y-2 -z-10 group-hover:translate-x-1 group-hover:translate-y-1 transition-transform"></div>
+                    <div class="absolute inset-0 bg-white translate-x-2 translate-y-2 -z-10 group-hover:translate-x-1 group-hover:translate-y-1 transition-transform"></div>
                 </button>
             </div>
         </form>

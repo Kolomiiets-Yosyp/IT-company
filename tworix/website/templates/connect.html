@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}Connect{% endblock %}
+{% block title %}rules{% endblock %}
 
 {% block content %}
 <section class="px-6 lg:px-12 py-20 lg:py-32 relative">
@@ -31,10 +31,22 @@
                     <label for="message-page" class="text-xs font-bold text-white/50 tracking-widest uppercase">Message</label>
                     <textarea id="message-page" name="message" rows="5" required class="w-full bg-background-dark border-b-2 border-white/10 focus:border-primary transition-all p-3 mt-2 outline-none"></textarea>
                 </div>
-                <div class="flex justify-end pt-4">
-                     <button type="submit" class="group relative bg-white text-black font-black px-10 py-5 text-xl sliced-border hover:translate-x-2 transition-transform">
+                <div class="flex items-center justify-between pt-4">
+                    <div class="flex items-center gap-3">
+                        <div class="relative flex items-center">
+                            <input type="checkbox" id="rules-checkbox-page" required
+                                   class="peer appearance-none w-6 h-6 border-2 border-primary bg-transparent checked:bg-transparent cursor-pointer">
+                            <span class="material-symbols-outlined absolute pointer-events-none text-primary opacity-0 peer-checked:opacity-100 transition-opacity font-black text-xl">
+                                check
+                            </span>
+                        </div>
+                        <label for="rules-checkbox-page" class="text-primary text-xs font-bold tracking-widest cursor-pointer">
+                            Allow <a href="{% url 'about' %}" class="underline hover:text-white transition-colors">rules</a> specific
+                        </label>
+                    </div>
+                    <button type="submit" class="group relative bg-primary text-black font-black px-10 py-5 text-xl sliced-border hover:translate-x-2 transition-transform">
                         <span class="relative z-10">TRANSMIT</span>
-                        <div class="absolute inset-0 bg-primary translate-x-2 translate-y-2 -z-10 group-hover:translate-x-1 group-hover:translate-y-1 transition-transform"></div>
+                        <div class="absolute inset-0 bg-white translate-x-2 translate-y-2 -z-10 group-hover:translate-x-1 group-hover:translate-y-1 transition-transform"></div>
                     </button>
                 </div>
             </form>
