@@ -65,9 +65,9 @@ def solutions(request):
     context = get_content_context()
     return render(request, 'solutions.html', context)
 
-def about(request):
+def rules(request):
     context = get_content_context()
-    return render(request, 'about.html', context)
+    return render(request, 'rules.html', context)
 
 def lab(request):
     context = get_content_context()
