@@ -24,9 +24,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-7na_7ht4hwn@u679q8hq(_5umbpw-o4j5ynczt(p)$%)!hn32y')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['142.93.136.85' , 'tworix.dev']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -125,3 +125,18 @@ STATICFILES_DIRS = [
 # Media files handling
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
+
+
+# Налаштування електронної пошти
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+
+# Пошта, З ЯКОЇ будуть відправлятися листи (можна використовувати ту саму tworix.company@gmail.com)
+EMAIL_HOST_USER = 'tworix.company@gmail.com'
+
+# УВАГА: Тут має бути не ваш звичайний пароль, а "Пароль додатку" (App Password)
+EMAIL_HOST_PASSWORD = 'zcyc uqcx jrsp htyf'
+
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
